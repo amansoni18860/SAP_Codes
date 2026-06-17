@@ -1,18 +1,9 @@
-sap.ui.define([
-    "sap/m/Button",
-    "sap/m/Title",
-    "sap/m/VBox"
-], function(Button, Title, VBox) {
-
+sap.ui.define(["sap/ui/core/mvc/XMLView"], function (XMLView) {
     "use strict";
 
-    var oLayout = new VBox({
-        items: [
-            new Title({ text: "Welcome to My First SAP UI5 App" }),
-            new Button({ text: "Click Me" })
-        ]
+    XMLView.create({
+        viewName: "ui5.walkthrough.view.App"
+    }).then((oView) => {
+        oView.placeAt("content");
     });
-
-    oLayout.placeAt("content11");
-});
-``
+})
