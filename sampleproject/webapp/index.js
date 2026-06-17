@@ -1,8 +1,18 @@
-sap.ui.define(["sap/m/Text"], function(Text) {
+sap.ui.define([
+    "sap/m/Button",
+    "sap/m/Title",
+    "sap/m/VBox"
+], function(Button, Title, VBox) {
 
     "use strict";
-    var oText=new Text("myText",{
-        text:"Hello World"
+
+    var oLayout = new VBox({
+        items: [
+            new Title({ text: "Welcome to My First SAP UI5 App" }),
+            new Button({ text: "Click Me" })
+        ]
     });
-    oText.placeAt("content11");
-})
+
+    oLayout.placeAt("content11");
+});
+``
