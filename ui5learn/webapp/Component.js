@@ -1,27 +1,39 @@
 sap.ui.define([
     "sap/ui/core/UIComponent",
-    "sap/ui/model/json/JSONModel"
-], function (UIComponent, JSONModel) {
+    "sap/ui/model/json/JSONModel",
+    "sap/ui/demo/learn/service/DialogService"
+], function (
+    UIComponent,
+    JSONModel,
+    DialogService
+) {
     "use strict";
 
-    return UIComponent.extend("sap.ui.demo.learn.Component", {
+    return UIComponent.extend(
+        "sap.ui.demo.learn.Component",
+        {
 
-        metadata: {
-            manifest: "json"
-        },
+            metadata: {
+                manifest: "json"
+            },
 
-        init: function () {
+            init: function () {
 
-            UIComponent.prototype.init.apply(this, arguments);
+                UIComponent.prototype.init.apply(
+                    this,
+                    arguments
+                );
 
-            var oData = {
-                recipient: {
-                    name: "UI5 Team"
-                }
-            };
+                // Application Model
+                this.setModel(new JSONModel({
+                    recipient: {
+                        name: "UI5 Team"
+                    }
+                }));
 
-            var oModel = new JSONModel(oData);
-            this.setModel(oModel);
+                // Global dialog service
+                this.dialogService = DialogService;
+            }
         }
-    });
+    );
 });

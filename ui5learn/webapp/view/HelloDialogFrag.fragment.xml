@@ -4,7 +4,7 @@
 
     <Dialog
         id="helloDialog"
-        title="Hello Dialog"
+        title="Welcome"
         contentWidth="25rem">
 
         <content>
@@ -16,33 +16,28 @@
                 <core:Icon
                     src="sap-icon://hello-world"
                     size="3rem"
-                    color="#0a6ed1"
-                    class="sapUiSmallMarginBottom"/>
+                    color="#0a6ed1"/>
 
                 <Title
                     text="{= 'Welcome ' + ${/recipient/name} }"
-                    level="H3" />
+                    level="H3"/>
 
                 <Text
-                    text="{= 'Hello ' + ${/recipient/name} + ', welcome to SAP UI5 Fragments.' }"
-                    class="sapUiSmallMarginTop" />
+                    text="{= 'Hello ' + ${/recipient/name} + ', welcome to SAP UI5.' }"
+                    class="sapUiSmallMarginTop"/>
 
             </VBox>
 
         </content>
 
         <beginButton>
+
             <Button
                 text="OK"
                 type="Emphasized"
-                press=".onCloseDialog" />
-        </beginButton>
+                press=".onCloseDialog"/>
 
-        <endButton>
-            <Button
-                text="Cancel"
-                press=".onCloseDialog" />
-        </endButton>
+        </beginButton>
 
     </Dialog>
 

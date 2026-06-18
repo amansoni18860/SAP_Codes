@@ -4,9 +4,8 @@
     controllerName="sap.ui.demo.learn.controller.HelloPanel">
 
     <Panel
-        headerText="{i18n>PanelHeader}"
-        class="sapUiResponsiveMargin"
-        width="auto">
+        headerText="Hello UI5"
+        class="sapUiResponsiveMargin">
 
         <content>
 
@@ -15,25 +14,15 @@
                 class="sapUiSmallMargin">
 
                 <Button
+                    text="Open Dialog"
                     icon="sap-icon://message-popup"
-                    id="helloDialogButton"
-                    text="{i18n>openDialogBtn}"
                     press=".onPressDialog"
-                    class="sapUiTinyMarginEnd"/>
-
-                <Button
-                    text="{i18n>showHelloBtn}"
-                    press=".onPress"
                     class="sapUiTinyMarginEnd"/>
 
                 <Input
                     value="{/recipient/name}"
                     valueLiveUpdate="true"
                     width="15rem"
-                    class="sapUiTinyMarginEnd"/>
-
-                <Text
-                    text="Hello"
                     class="sapUiTinyMarginEnd"/>
 
                 <Text
