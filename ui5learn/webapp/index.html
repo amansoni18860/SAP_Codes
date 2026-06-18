@@ -11,12 +11,18 @@
     data-sap-ui-libs="sap.m"
     data-sap-ui-compactVersion="edge"
     data-sap-ui-async="true"
-    data-sap-ui-onInit="module:sap/ui/demo/learn/index"
+    data-sap-ui-onInit="module:sap/ui/core/ComponentSupport"
     data-sap-ui-resourceroots='{
         "sap/ui/demo/learn": "./"
     }'
     ></script>
 </head>
 <body id="content" class="sapUiBody">
+    <div data-sap-ui-component 
+    data-name="sap.ui.demo.learn" 
+    data-id="container"
+     data-settings='{"id":"learn"}'>
+
+    </div>
 </body>
 </html>

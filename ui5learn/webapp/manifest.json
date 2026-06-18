@@ -1,10 +1,68 @@
 {
-    "_version": "1.0.0",
-    "sap.app": {
-        "id": "ui5learn",
-        "type": "application"
+  "_version": "1.0.0",
+  "sap.app": {
+    "id": "sap.ui.demo.learn",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "1.0.0"
     },
-    "sap.ui5": {
-        "bindingSyntax": "complex"
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}"
+  },
+  "sap.ui5": {
+    "bindingSyntax": "complex",
+
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+
+    "devices": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    },
+
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "sap.ui.demo.learn.i18n.i18n"
+        }
+      }
+    },
+
+    "rootView": {
+      "viewName": "sap.ui.demo.learn.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "app"
+    },
+
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+
+    "dependencies": {
+      "minUI5Version": "1.60",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
     }
+  }
 }

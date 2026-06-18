@@ -7,12 +7,7 @@ sap.ui.define([
 
     return UIComponent.extend("sap.ui.demo.learn.Component",{
         metadata:{
-            rootView:{
-                "viewName":"sap.ui.demo.learn.view.App",
-                "type":"XML",
-                "async":true,
-                "id":"app"
-            }
+            manifest:"json"
               
         },
 
@@ -27,10 +22,7 @@ sap.ui.define([
             var oModel=new JSONModel(oData);
             this.setModel(oModel);
 
-            var i18nModel=new ResourceModel({
-                bundleName:"sap.ui.demo.learn.i18n.i18n"
-            });
-            this.setModel(i18nModel,"i18n");
+
         }
 })
 })
