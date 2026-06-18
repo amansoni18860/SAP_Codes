@@ -9,28 +9,8 @@
             <pages>
                 <Page title="{i18n>homePageTitle}">
                     <content>
-                        <Panel headerText="{i18n>PanelHeader}">
+<mvc:View viewName="sap.ui.demo.learn.view.HelloPanel" type="XML" />
 
-                            <content>
-
-                                <Button
-                                    text="{i18n>showHelloBtn}"
-                                    press="onPress" />
-
-                                <VBox class="sapUiSmallMargin">
-
-                                    <Input
-                                        value="{/recipient/name}"
-                                        valueLiveUpdate="true" />
-
-                                    <Text
-                                        text="{= 'Hello ' + ${/recipient/name} }" />
-
-                                </VBox>
-
-                            </content>
-
-                        </Panel>
                     </content>
                 </Page>
             </pages>

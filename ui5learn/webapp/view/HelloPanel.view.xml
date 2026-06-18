@@ -1,0 +1,39 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    controllerName="sap.ui.demo.learn.controller.HelloPanel"
+    displayBlock="true"
+>
+    <Panel
+        headerText="{i18n>PanelHeader}"
+        class="sapUiResponsiveMargin"
+        width="auto"
+    >
+        <content>
+            <HBox
+                alignItems="Center"
+                class="sapUiSmallMargin"
+            >
+                <Button
+                    text="{i18n>showHelloBtn}"
+                    press="onPress"
+                    class="sapUiTinyMarginEnd"
+                />
+
+                <Input
+                    value="{/recipient/name}"
+                    valueLiveUpdate="true"
+                    width="15rem"
+                    class="sapUiTinyMarginEnd"
+                />
+
+                <Text
+                    text="Hello"
+                    class="sapUiTinyMarginEnd"
+                />
+
+                <Text text="{= 'Hello ' + ${/recipient/name} }" />
+            </HBox>
+        </content>
+    </Panel>
+</mvc:View>
