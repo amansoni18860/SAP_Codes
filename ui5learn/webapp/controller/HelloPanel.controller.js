@@ -1,9 +1,8 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/ui/model/json/JSONModel",
-    "sap/ui/model/resource/ResourceModel",
-    "sap/m/MessageToast"
-], function (Controller, JSONModel, ResourceModel, MessageToast) {
+    "sap/m/MessageToast",
+    "sap/ui/core/Fragment"
+], function (Controller, MessageToast, Fragment) {
     "use strict";
 
     return Controller.extend("sap.ui.demo.learn.controller.HelloPanel", {
@@ -19,6 +18,29 @@ sap.ui.define([
                     [this.getView().getModel().getProperty("/recipient/name")]
                 )
             );
+        },
+
+        onPressDialog: function () {
+            var oView = this.getView();
+
+            if (!this.oDialog) {
+                Fragment.load({
+                    id: oView.getId(),
+                    name: "sap.ui.demo.learn.view.HelloDialogFrag",
+                    controller: this
+                }).then(function (oDialog) {
+                    oView.addDependent(oDialog);
+                    this.oDialog = oDialog;
+                    oDialog.open();
+                }.bind(this));
+            } else {
+                this.oDialog.open();
+            }
+        },
+
+        onCloseDialog: function () {
+            this.oDialog.close();
         }
+
     });
 });

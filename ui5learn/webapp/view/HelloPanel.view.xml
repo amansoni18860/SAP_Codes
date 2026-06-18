@@ -1,39 +1,48 @@
 <mvc:View
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
-    controllerName="sap.ui.demo.learn.controller.HelloPanel"
-    displayBlock="true"
->
+    controllerName="sap.ui.demo.learn.controller.HelloPanel">
+
     <Panel
         headerText="{i18n>PanelHeader}"
         class="sapUiResponsiveMargin"
-        width="auto"
-    >
+        width="auto">
+
         <content>
+
             <HBox
                 alignItems="Center"
-                class="sapUiSmallMargin"
-            >
+                class="sapUiSmallMargin">
+
+                <Button
+                    icon="sap-icon://message-popup"
+                    id="helloDialogButton"
+                    text="{i18n>openDialogBtn}"
+                    press=".onPressDialog"
+                    class="sapUiTinyMarginEnd"/>
+
                 <Button
                     text="{i18n>showHelloBtn}"
-                    press="onPress"
-                    class="sapUiTinyMarginEnd"
-                />
+                    press=".onPress"
+                    class="sapUiTinyMarginEnd"/>
 
                 <Input
                     value="{/recipient/name}"
                     valueLiveUpdate="true"
                     width="15rem"
-                    class="sapUiTinyMarginEnd"
-                />
+                    class="sapUiTinyMarginEnd"/>
 
                 <Text
                     text="Hello"
-                    class="sapUiTinyMarginEnd"
-                />
+                    class="sapUiTinyMarginEnd"/>
 
-                <Text text="{= 'Hello ' + ${/recipient/name} }" />
+                <Text
+                    text="{= 'Hello ' + ${/recipient/name} }"/>
+
             </HBox>
+
         </content>
+
     </Panel>
+
 </mvc:View>
