@@ -1,15 +1,27 @@
 <mvc:View
 xmlns:mvc="sap.ui.core.mvc"
 xmlns="sap.m"
-controllerName="sap.ui.demo.learn.controller.App">
-
-<Button text="{i18n>showHelloBtn}" press="onPress"/>
-
-<Input value="{/recipient/name}"
-description="Hello {/recipient/name}"
-valueLiveUpdate="true"/>
+controllerName="sap.ui.demo.learn.controller.App"
+displayBlock="true">
 
 
+
+<App>
+<pages>
+
+<Page title="{i18n>homePageTitle}">
+    <content>
+
+    <Panel headerText="{i18n>PanelHeader}">
+        <content>
+
+        <Button text="{i18n>showHelloBtn}" press="onPress"/>
+
+            <Input value="{/recipient/name}"
+                description="Hello {/recipient/name}"
+                valueLiveUpdate="true"/>
+
+                
 <VBox>
     <Input
         value="{/recipient/name}"
@@ -17,6 +29,15 @@ valueLiveUpdate="true"/>
 
    <Text text="{/recipient/name}" />
 </VBox>
+        </content>
+    </Panel>
+    </content>
+</Page>
+
+</pages>
+
+</App>
+
 
 
 </mvc:View>
