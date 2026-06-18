@@ -5,4 +5,18 @@ controllerName="sap.ui.demo.learn.controller.App">
 
 <Button text="Hello World" press="onPress"/>
 
+<Input value="{/recipient/name}"
+description="Hello {/recipient/name}"
+valueLiveUpdate="true"/>
+
+
+<VBox>
+    <Input
+        value="{/recipient/name}"
+        valueLiveUpdate="true" />
+
+   <Text text="{/recipient/name}" />
+</VBox>
+
+
 </mvc:View>

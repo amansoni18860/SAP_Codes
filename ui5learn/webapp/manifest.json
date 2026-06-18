@@ -1,6 +1,10 @@
 {
-    "__version": "1.0.0",
+    "_version": "1.0.0",
     "sap.app": {
-        "id": "ui5learn"
+        "id": "ui5learn",
+        "type": "application"
+    },
+    "sap.ui5": {
+        "bindingSyntax": "complex"
     }
 }
