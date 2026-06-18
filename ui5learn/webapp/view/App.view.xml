@@ -1,43 +1,40 @@
 <mvc:View
-xmlns:mvc="sap.ui.core.mvc"
-xmlns="sap.m"
-controllerName="sap.ui.demo.learn.controller.App"
-displayBlock="true">
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    controllerName="sap.ui.demo.learn.controller.App"
+    displayBlock="true">
 
+    <Shell>
+        <App>
+            <pages>
+                <Page title="{i18n>homePageTitle}">
+                    <content>
+                        <Panel headerText="{i18n>PanelHeader}">
 
+                            <content>
 
-<App>
-<pages>
+                                <Button
+                                    text="{i18n>showHelloBtn}"
+                                    press="onPress" />
 
-<Page title="{i18n>homePageTitle}">
-    <content>
+                                <VBox class="sapUiSmallMargin">
 
-    <Panel headerText="{i18n>PanelHeader}">
-        <content>
+                                    <Input
+                                        value="{/recipient/name}"
+                                        valueLiveUpdate="true" />
 
-        <Button text="{i18n>showHelloBtn}" press="onPress"/>
+                                    <Text
+                                        text="{= 'Hello ' + ${/recipient/name} }" />
 
-            <Input value="{/recipient/name}"
-                description="Hello {/recipient/name}"
-                valueLiveUpdate="true"/>
+                                </VBox>
 
-                
-<VBox>
-    <Input
-        value="{/recipient/name}"
-        valueLiveUpdate="true" />
+                            </content>
 
-   <Text text="{/recipient/name}" />
-</VBox>
-        </content>
-    </Panel>
-    </content>
-</Page>
-
-</pages>
-
-</App>
-
-
+                        </Panel>
+                    </content>
+                </Page>
+            </pages>
+        </App>
+    </Shell>
 
 </mvc:View>

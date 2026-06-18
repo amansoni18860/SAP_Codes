@@ -3,35 +3,10 @@
   "sap.app": {
     "id": "sap.ui.demo.learn",
     "type": "application",
-    "i18n": "i18n/i18n.properties",
-    "applicationVersion": {
-      "version": "1.0.0"
-    },
-    "title": "{{appTitle}}",
-    "description": "{{appDescription}}"
+    "i18n": "i18n/i18n.properties"
   },
   "sap.ui5": {
     "bindingSyntax": "complex",
-
-    "icons": {
-      "icon": "",
-      "favIcon": "",
-      "phone": "",
-      "phone@2": "",
-      "tablet": "",
-      "tablet@2": ""
-    },
-
-    "devices": {
-      "desktop": true,
-      "tablet": true,
-      "phone": true
-    },
-
-    "contentDensities": {
-      "compact": true,
-      "cozy": true
-    },
 
     "models": {
       "i18n": {
@@ -47,14 +22,6 @@
       "type": "XML",
       "async": true,
       "id": "app"
-    },
-
-    "resources": {
-      "css": [
-        {
-          "uri": "css/style.css"
-        }
-      ]
     },
 
     "dependencies": {
