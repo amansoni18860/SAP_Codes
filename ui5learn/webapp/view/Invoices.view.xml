@@ -7,8 +7,15 @@
         headerText="Invoices"
         items="{invoice>/Invoices}"
         class="sapUiResponsiveMargin"
-        width="auto">
-
+        width="auto"
+        id="invoiceList">
+<headerToolbar>
+<Toolbar >
+<Title text="Invoices" />
+<ToolbarSpacer />
+<SearchField width="50%" search=".onFilterInvoices"/>
+</Toolbar>
+</headerToolbar>
         <items>
             <ObjectListItem
                 title="{invoice>Quantity} x {invoice>ProductName}"
