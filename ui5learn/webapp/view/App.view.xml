@@ -8,9 +8,12 @@
         <App>
             <pages>
                 <Page title="{i18n>homePageTitle}">
+                <headerContent>
+                <Button icon="sap-icon://home" press="onHomePress"/>
+                </headerContent>
                     <content>
-<mvc:View viewName="sap.ui.demo.learn.view.HelloPanel" type="XML" />
-
+<mvc:XMLView viewName="sap.ui.demo.learn.view.HelloPanel" type="XML" />
+<mvc:XMLView viewName="sap.ui.demo.learn.view.Invoices" type="XML" />
                     </content>
                 </Page>
             </pages>

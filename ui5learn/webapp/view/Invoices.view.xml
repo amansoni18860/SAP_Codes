@@ -1,0 +1,31 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    controllerName="sap.ui.demo.learn.controller.InvoicesController">
+
+    <List
+        headerText="Invoices"
+        items="{invoice>/Invoices}"
+        class="sapUiResponsiveMargin"
+        width="auto">
+
+        <items>
+            <ObjectListItem
+                title="{invoice>Quantity} x {invoice>ProductName}"
+                number="{
+                    parts: [
+                        { path: 'invoice>ExtendedPrice' },
+                        { path: 'view>/currency' }
+                    ],
+                    type: 'sap.ui.model.type.Currency',
+                    formatOptions: {
+                        showMeasure: false
+                    }
+                }"
+                numberUnit="{view>/currency}" 
+                numberState="{= ${invoice>ExtendedPrice} > 9 ? 'Success' : 'Warning' }"/>
+        </items>
+
+    </List>
+
+</mvc:View>
