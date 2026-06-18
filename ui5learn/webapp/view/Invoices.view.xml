@@ -5,7 +5,10 @@
 
     <List
         headerText="Invoices"
-        items="{invoice>/Invoices}"
+        items="{
+        path: 'invoice>/Invoices',
+        sorter: { path: 'ShipperName',group: true }
+        }"
         class="sapUiResponsiveMargin"
         width="auto"
         id="invoiceList">
