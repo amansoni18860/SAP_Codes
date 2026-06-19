@@ -1,11 +1,109 @@
 <mvc:View
-xmlns:mvc="sap.ui.core.mvc"
+    xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     controllerName="sap.ui.demo.learn.controller.DetailsPanel">
 
-   <Page title="{i18n>detailsPageTitle}">
-   <ObjectHeader title="Invoice"/>
-   
-   </Page>
+    <Page
+        title="{i18n>detailsPageTitle}"
+        showNavButton="true"
+        navButtonPress=".onNavBack">
+
+        <content>
+
+            <ObjectHeader
+                icon="sap-icon://product"
+                title="{invoice>ProductName}"
+                intro="Invoice Details"
+                number="{invoice>ExtendedPrice}"
+                numberUnit="{invoice>CurrencyCode}">
+
+                <attributes>
+                    <ObjectAttribute
+                        title="Shipper"
+                        text="{invoice>ShipperName}" />
+
+                    <ObjectAttribute
+                        title="Quantity"
+                        text="{invoice>Quantity}" />
+                </attributes>
+
+                <statuses>
+                    <ObjectStatus
+                        title="Status"
+                        text="{invoice>Status}" />
+                </statuses>
+
+            </ObjectHeader>
+
+            <Panel
+                headerText="Product Information"
+                class="sapUiResponsiveMargin">
+
+                <content>
+
+                    <HBox
+                        justifyContent="SpaceBetween"
+                        class="sapUiSmallMargin">
+
+                        <VBox>
+                            <Title text="Product Name" level="H5"/>
+                            <Text text="{invoice>ProductName}"/>
+                        </VBox>
+
+                        <VBox>
+                            <Title text="Quantity" level="H5"/>
+                            <Text text="{invoice>Quantity}"/>
+                        </VBox>
+
+                    </HBox>
+
+                </content>
+
+            </Panel>
+
+            <Panel
+                headerText="Pricing Information"
+                class="sapUiResponsiveMargin">
+
+                <content>
+
+                    <HBox
+                        justifyContent="SpaceBetween"
+                        class="sapUiSmallMargin">
+
+                        <VBox>
+                            <Title text="Amount" level="H5"/>
+                            <Text text="{invoice>ExtendedPrice}"/>
+                        </VBox>
+
+                        <VBox>
+                            <Title text="Currency" level="H5"/>
+                            <Text text="{invoice>CurrencyCode}"/>
+                        </VBox>
+
+                    </HBox>
+
+                </content>
+
+            </Panel>
+
+            <Panel
+                headerText="Shipping Information"
+                class="sapUiResponsiveMargin">
+
+                <content>
+
+                    <VBox class="sapUiSmallMargin">
+                        <Title text="Shipper" level="H5"/>
+                        <Text text="{invoice>ShipperName}"/>
+                    </VBox>
+
+                </content>
+
+            </Panel>
+
+        </content>
+
+    </Page>
 
 </mvc:View>

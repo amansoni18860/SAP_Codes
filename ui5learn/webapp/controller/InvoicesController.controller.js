@@ -54,7 +54,9 @@ sap.ui.define([
                 var oRouter =
                     this.getOwnerComponent().getRouter();
 
-                oRouter.navTo("details");
+                oRouter.navTo("details",{
+                    invoicePath:window.encodeURI(oItem.getBindingContext("invoice").getPath().substr(1))
+                });
             }
         }
     );
