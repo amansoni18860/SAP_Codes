@@ -33,6 +33,10 @@ sap.ui.define([
 
                 // Global dialog service
                 this.dialogService = DialogService;
+
+
+
+                this.getRouter().initialize();
             }
         }
     );

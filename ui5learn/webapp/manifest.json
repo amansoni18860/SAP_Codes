@@ -1,11 +1,9 @@
 {
   "_version": "1.0.0",
-
   "sap.app": {
     "id": "sap.ui.demo.learn",
     "type": "application",
     "i18n": "i18n/i18n.properties",
-
     "dataSources": {
       "invoiceRemote": {
         "uri": "https://services.odata.org/V2/Northwind/Northwind.svc/",
@@ -16,10 +14,8 @@
       }
     }
   },
-
   "sap.ui5": {
     "bindingSyntax": "complex",
-
     "models": {
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
@@ -27,7 +23,6 @@
           "bundleName": "sap.ui.demo.learn.i18n.i18n"
         }
       },
-
       "invoice": {
         "dataSource": "invoiceRemote",
         "type": "sap.ui.model.odata.v2.ODataModel",
@@ -36,14 +31,42 @@
         }
       }
     },
-
     "rootView": {
       "viewName": "sap.ui.demo.learn.view.App",
       "type": "XML",
       "async": true,
       "id": "app"
     },
-
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "viewPath": "sap.ui.demo.learn.view",
+        "controlId": "app",
+        "controlAggregation": "pages",
+        "async": true
+      },
+      "routes": [
+        {
+          "pattern": "",
+          "name": "overview",
+          "target": "overview"
+        },
+        {
+          "pattern": "detail",
+          "name": "details",
+          "target": "details"
+        }
+      ],
+     "targets": {
+    "overview": {
+        "viewName": "OverviewPanel"
+    },
+    "details": {
+        "viewName": "DetailsPanel"
+    }
+}
+    },
     "dependencies": {
       "minUI5Version": "1.60",
       "libs": {

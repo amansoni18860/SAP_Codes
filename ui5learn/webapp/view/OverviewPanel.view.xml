@@ -1,0 +1,15 @@
+ <mvc:View controllerName="sap.ui.demo.learn.controller.App"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+
+   <Page title="{i18n>homePageTitle}">
+
+<headerContent>
+<Button icon="sap-icon://menu2" press=".onPressDialog" type="Transparent"/>
+</headerContent>
+<content>
+<mvc:XMLView viewName="sap.ui.demo.learn.view.HelloPanel"/>
+<mvc:XMLView viewName="sap.ui.demo.learn.view.Invoices"/>
+</content>
+   </Page>
+ </mvc:View>

@@ -1,0 +1,11 @@
+<mvc:View
+xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    controllerName="sap.ui.demo.learn.controller.DetailsPanel">
+
+   <Page title="{i18n>detailsPageTitle}">
+   <ObjectHeader title="Invoice"/>
+   
+   </Page>
+
+</mvc:View>

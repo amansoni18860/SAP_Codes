@@ -33,7 +33,10 @@
                     }
                 }"
                 numberUnit="{view>/currency}" 
-                numberState="{= ${invoice>ExtendedPrice} > 9 ? 'Success' : 'Warning' }">
+                numberState="{= ${invoice>ExtendedPrice} > 9 ? 'Success' : 'Warning' }"
+                type="Navigation"
+                press=".onInvoicePress"
+                >
                 <firstStatus>
                     <ObjectStatus text="{path:'invoice>Status', formatter:'.formatter.statusText'}" />
                 </firstStatus>
