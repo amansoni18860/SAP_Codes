@@ -1,7 +1,8 @@
 <mvc:View
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
-    controllerName="sap.ui.demo.learn.controller.DetailsPanel">
+    controllerName="sap.ui.demo.learn.controller.DetailsPanel"
+    xmlns:rating="sap.ui.demo.learn.control">
 
     <Page
         title="{i18n>detailsPageTitle}"
@@ -96,6 +97,20 @@
                     <VBox class="sapUiSmallMargin">
                         <Title text="Shipper" level="H5"/>
                         <Text text="{invoice>ShipperName}"/>
+                    </VBox>
+
+                </content>
+
+            </Panel>
+            <Panel
+                headerText="Product Rating"
+                class="sapUiResponsiveMargin">
+
+                <content>
+
+                    <VBox class="sapUiSmallMargin">
+                                                    <rating:ProductRating value="{invoice>Rating}" maxValue="5" class="sapUiTinyMarginTop"/>
+
                     </VBox>
 
                 </content>

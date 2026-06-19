@@ -1,0 +1,10 @@
+.myAppDemoWTProductRating {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.myAppDemoWTProductRating .sapMBtn {
+    margin-left: 1rem;
+}
