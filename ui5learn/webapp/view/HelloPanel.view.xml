@@ -17,7 +17,8 @@
                     text="Open Dialog"
                     icon="sap-icon://message-popup"
                     press=".onPressDialog"
-                    class="sapUiTinyMarginEnd"/>
+                    class="sapUiTinyMarginEnd"
+                    id="helloDialogButton"/>
 
                 <Input
                     value="{/recipient/name}"
