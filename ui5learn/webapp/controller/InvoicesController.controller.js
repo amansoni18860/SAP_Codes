@@ -41,23 +41,27 @@ sap.ui.define([
                     );
                 }
 
-                var oList = this.byId("invoiceList");
-                var oBinding = oList.getBinding("items");
+var oTable = this.byId("invoiceTable");
+var oBinding = oTable.getBinding("items");
 
-                oBinding.filter(aFilter);
+oBinding.filter(aFilter);
+               
             },
 
-            onInvoicePress: function (oEvent) {
+           onInvoicePress: function (oEvent) {
 
-                var oItem = oEvent.getSource();
+    var oItem = oEvent.getSource();
 
-                var oRouter =
-                    this.getOwnerComponent().getRouter();
-
-                oRouter.navTo("details",{
-                    invoicePath:window.encodeURI(oItem.getBindingContext("invoice").getPath().substr(1))
-                });
-            }
+    this.getOwnerComponent()
+        .getRouter()
+        .navTo("details", {
+            invoicePath: window.encodeURIComponent(
+                oItem.getBindingContext("invoice")
+                    .getPath()
+                    .substring(1)
+            )
+        });
+}
         }
     );
 });

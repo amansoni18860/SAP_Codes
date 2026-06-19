@@ -8,3 +8,16 @@
 .myAppDemoWTProductRating .sapMBtn {
     margin-left: 1rem;
 }
+
+.sapMListTblCell {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+}
+
+.sapMObjectNumber {
+    font-weight: 600;
+}
+
+.sapMObjStatus {
+    font-weight: 500;
+}

@@ -2,47 +2,110 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     controllerName="sap.ui.demo.learn.controller.InvoicesController">
-
-    <List
-        headerText="Invoices"
-        items="{
+<Table
+    id="invoiceTable"
+    class="sapUiResponsiveMargin"
+    autoPopinMode="true"
+    items="{
         path: 'invoice>/Invoices',
-        sorter: { path: 'ShipperName',group: true }
-        }"
-        class="sapUiResponsiveMargin"
-        width="auto"
-        id="invoiceList">
-<headerToolbar>
-<Toolbar >
-<Title text="Invoices" />
-<ToolbarSpacer />
-<SearchField width="50%" search=".onFilterInvoices"/>
-</Toolbar>
-</headerToolbar>
-        <items>
-            <ObjectListItem
-                title="{invoice>Quantity} x {invoice>ProductName}"
-                number="{
-                    parts: [
-                        { path: 'invoice>ExtendedPrice' },
-                        { path: 'view>/currency' }
-                    ],
-                    type: 'sap.ui.model.type.Currency',
-                    formatOptions: {
-                        showMeasure: false
-                    }
-                }"
-                numberUnit="{view>/currency}" 
-                numberState="{= ${invoice>ExtendedPrice} > 9 ? 'Success' : 'Warning' }"
-                type="Navigation"
-                press=".onInvoicePress"
-                >
-                <firstStatus>
-                    <ObjectStatus text="{path:'invoice>Status', formatter:'.formatter.statusText'}" />
-                </firstStatus>
-            </ObjectListItem>
-        </items>
+        sorter: {
+            path: 'ShipperName',
+            group: true
+        }
+    }">
 
-    </List>
+    <headerToolbar>
+        <OverflowToolbar>
+
+            <Title
+                text="Invoices"
+                level="H2"/>
+
+            <ToolbarSpacer/>
+
+            <SearchField
+                width="15rem"
+                placeholder="Search"
+                search=".onFilterInvoices"/>
+
+        </OverflowToolbar>
+    </headerToolbar>
+
+    <columns>
+
+        <Column
+            width="5rem"
+            hAlign="Center">
+            <Text text="Qty"/>
+        </Column>
+
+        <Column>
+            <Text text="Name"/>
+        </Column>
+
+        <Column
+            minScreenWidth="Tablet"
+            demandPopin="true">
+            <Text text="Status"/>
+        </Column>
+
+        <Column
+            minScreenWidth="Tablet"
+            demandPopin="true">
+            <Text text="Supplier"/>
+        </Column>
+
+        <Column
+            width="8rem"
+            hAlign="End">
+            <Text text="Price"/>
+        </Column>
+
+    </columns>
+
+    <items>
+
+        <ColumnListItem
+            type="Navigation"
+            press=".onInvoicePress">
+
+            <cells>
+
+                <Text
+                    text="{invoice>Quantity}"/>
+
+                <ObjectIdentifier
+                    title="{invoice>ProductName}"/>
+
+                <ObjectStatus
+                    text="{
+                        path:'invoice>Status',
+                        formatter:'.formatter.statusText'
+                    }"/>
+
+                <Text
+                    text="{invoice>ShipperName}"/>
+
+                <ObjectNumber
+                    number="{
+                        parts: [
+                            { path: 'invoice>ExtendedPrice' },
+                            { path: 'view>/currency' }
+                        ],
+                        type: 'sap.ui.model.type.Currency',
+                        formatOptions: {
+                            showMeasure: false
+                        }
+                    }"
+                    emphasized="true"
+                    state="{= ${invoice>ExtendedPrice} > 9 ? 'Success' : 'Warning'}"/>
+
+            </cells>
+
+        </ColumnListItem>
+
+    </items>
+
+</Table>
 
 </mvc:View>
