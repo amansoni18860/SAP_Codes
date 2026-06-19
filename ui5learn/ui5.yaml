@@ -5,3 +5,4 @@ type: application
 framework:
   name: SAPUI5
   version: "1.149.0"
+
