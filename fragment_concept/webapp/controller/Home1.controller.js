@@ -10,6 +10,12 @@ sap.ui.define(["sap/ui/core/mvc/Controller"],function( Controller){
 
         onGoToProduct:function(){
             this.getOwnerComponent().getRouter().navTo("product");
+        },
+        onGoToEmployee2:function(){
+            this.getOwnerComponent().getRouter().navTo("employee2");
+        },
+        onGoToProduct2:function(){
+            this.getOwnerComponent().getRouter().navTo("product2");
         }
     });
 })

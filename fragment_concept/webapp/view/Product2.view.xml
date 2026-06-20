@@ -1,0 +1,30 @@
+<mvc:View
+    controllerName="demo.frag.fragmentconcept.controller.Product2"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+>
+    <App>
+        <Page title="Product">
+            <content>
+                <VBox
+                    class="sapUiMediumMargin"
+                    alignItems="Center"
+                >
+                    <Title
+                        text="Product Management"
+                        level="H2"
+                    />
+
+                    <Text text="Click below to view product details." />
+
+                    <Button
+                        text="Open Product Dialog"
+                        type="Emphasized"
+                        press="onOpenProductDialog"
+                        class="sapUiSmallMarginTop"
+                    />
+                </VBox>
+            </content>
+        </Page>
+    </App>
+</mvc:View>

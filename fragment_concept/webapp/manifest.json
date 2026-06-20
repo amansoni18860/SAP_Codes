@@ -88,16 +88,27 @@
           "pattern":"product",
           "target":"product"
         }
+        ,
+        {
+          "name": "employee2",
+          "pattern": "employee2",
+          "target": "employee2"
+        },
+        {
+          "name":"product2",
+          "pattern":"product2",
+          "target":"product2"
+        }
       ],
       "targets": {
         "home": {
           "viewName": "Home1"
         },
-        "employee": {
-          "viewName": "Employee1"
+        "employee2": {
+          "viewName": "Employee2"
         },
-        "product": {
-          "viewName": "Product1"
+        "product2": {
+          "viewName": "Product2"
         }
       }
     },

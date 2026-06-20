@@ -14,6 +14,17 @@
             <Button
                 text="Go to Product"
                 press="onGoToProduct"
+                class="sapUiSmallMarginEnd"
+
+            />
+            <Button
+                text="Go to Employee2"
+                press="onGoToEmployee2"
+                class="sapUiSmallMarginEnd"
+            />
+            <Button
+                text="Go to Product2"
+                press="onGoToProduct2"
             />
         </content>
     </Page>

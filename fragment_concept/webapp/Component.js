@@ -1,7 +1,8 @@
 sap.ui.define([
     "sap/ui/core/UIComponent",
-    "demo/frag/fragmentconcept/model/models"
-], (UIComponent, models) => {
+    "demo/frag/fragmentconcept/model/models",
+    "demo/frag/fragmentconcept/util/DialogManager"
+], function (UIComponent, models, DialogManager) {
     "use strict";
 
     return UIComponent.extend("demo.frag.fragmentconcept.Component", {
@@ -12,14 +13,14 @@ sap.ui.define([
             ]
         },
 
-        init() {
-            // call the base component's init function
+        init: function () {
+
             UIComponent.prototype.init.apply(this, arguments);
 
-            // set the device model
             this.setModel(models.createDeviceModel(), "device");
 
-            // enable routing
+            this._dialogManager = DialogManager;
+
             this.getRouter().initialize();
         }
     });
