@@ -89,7 +89,7 @@
       }
     },
     "rootView": {
-      "viewName": "demo.frag.fragmentconcept.view.App",
+      "viewName": "demo.frag.fragmentconcept.view.Employee",
       "type": "XML",
       "id": "App",
       "async": true

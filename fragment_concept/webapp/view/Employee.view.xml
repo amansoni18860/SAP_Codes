@@ -1,0 +1,52 @@
+<mvc:View
+    controllerName="demo.frag.fragmentconcept.controller.Employee"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+>
+<App>
+    <Page title="Employee Management">
+        <content>
+            <Button
+                text="Add Employee"
+                press="onOpenForm"
+            />
+
+            <Table items="{/employees}">
+                <columns>
+                    <Column>
+                        <Text
+                            id="empId"
+                            text="Employee Id "
+                        />
+                    </Column>
+
+                    <Column>
+                        <Text
+                            text="Employee Name"
+                            id="empName"
+                        />
+                    </Column>
+
+                    <Column>
+                        <Text
+                            text="Department Name"
+                            id="empDept"
+                        />
+                    </Column>
+                </columns>
+
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{id}" />
+                            <Text text="{name}" />
+                            <Text text="{dept}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+
+    </App>
+</mvc:View>
