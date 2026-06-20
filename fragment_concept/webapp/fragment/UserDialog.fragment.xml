@@ -1,0 +1,35 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+>
+    <Dialog
+        id="userDialog"
+        title="User Information">
+        <content>
+            <VBox>
+                <Label text="Name:" />
+                <Input
+                    id="nameInput"
+                    placeholder="Enter your name"
+                    value="{/name}"
+                />
+            </VBox>
+        </content>
+
+        <beginButton>
+            <Button
+                id="saveButton"
+                text="Save"
+                press=".onSave"
+            />
+        </beginButton>
+
+        <endButton>
+            <Button
+                id="cancelButton"
+                text="Cancel"
+                press=".onCancel"
+            />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>
