@@ -1,0 +1,21 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    controllerName="demo.frag.fragmentconcept.controller.Home1"
+>
+<App id="App">
+    <Page title="Home">
+        <content>
+            <Button
+                text="Go to Employee"
+                press="onGoToEmployee"
+                class="sapUiSmallMarginEnd"
+            />
+            <Button
+                text="Go to Product"
+                press="onGoToProduct"
+            />
+        </content>
+    </Page>
+    </App>
+</mvc:View>

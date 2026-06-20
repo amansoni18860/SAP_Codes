@@ -1,0 +1,38 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form">
+
+    <Dialog
+        id="commonDialog"
+        title="Get Details"
+        contentWidth="400px">
+
+        <content>
+            <VBox class="sapUiMediumMargin">
+
+                <form:SimpleForm
+                    editable="false"
+                    layout="ResponsiveGridLayout">
+
+                    <Label text="Name / Product" />
+                    <Text text="{dialog>/field1}" />
+
+                    <Label text="Details" />
+                    <Text text="{dialog>/field2}" />
+
+                </form:SimpleForm>
+
+            </VBox>
+        </content>
+
+        <beginButton>
+            <Button
+                text="Close"
+                type="Emphasized"
+                press="onCloseDialogBox" />
+        </beginButton>
+
+    </Dialog>
+
+</core:FragmentDefinition>

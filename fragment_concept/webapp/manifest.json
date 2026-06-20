@@ -74,22 +74,35 @@
       },
       "routes": [
         {
-          "name": "RouteView1",
-          "pattern": ":?query:",
-          "target": [
-            "TargetView1"
-          ]
+          "name": "home",
+          "pattern": "",
+          "target": "home"
+        },
+        {
+          "name": "employee",
+          "pattern": "employee",
+          "target": "employee"
+        },
+        {
+          "name":"product",
+          "pattern":"product",
+          "target":"product"
         }
       ],
       "targets": {
-        "TargetView1": {
-          "id": "View1",
-          "name": "View1"
+        "home": {
+          "viewName": "Home1"
+        },
+        "employee": {
+          "viewName": "Employee1"
+        },
+        "product": {
+          "viewName": "Product1"
         }
       }
     },
     "rootView": {
-      "viewName": "demo.frag.fragmentconcept.view.Employee",
+      "viewName": "demo.frag.fragmentconcept.view.App",
       "type": "XML",
       "id": "App",
       "async": true

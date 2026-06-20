@@ -1,0 +1,18 @@
+<mvc:View controllerName="demo.frag.fragmentconcept.controller.Employee1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+
+    <App>
+    <Page id="page11" title="Employee">
+
+     <content>
+                <Button
+                    text="Show Employee Details"
+                    press="onShowEmployeeDetails"
+                    id="btnEmployeeDetails"
+                />
+            </content>
+            
+    </Page>
+    </App>
+</mvc:View>
