@@ -75,8 +75,20 @@
                         <Text text="{i18n>hireDate}" />
                     </Column>
                     <Column>
-                        <Text text="{i18n>salary}" />
-                    </Column>
+
+    <HBox alignItems="Center">
+
+        <Text text="{i18n>salary}" />
+
+        <Button
+            id="salarySortBtn"
+            icon="sap-icon://sort-ascending"
+            press=".onSortBySalary"
+            type="Transparent" />
+
+    </HBox>
+
+</Column>
                 </columns>
                 <items>
                     <ColumnListItem type="Active">

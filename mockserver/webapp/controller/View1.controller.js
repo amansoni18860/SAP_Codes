@@ -18,7 +18,8 @@ sap.ui.define([
     // Filter and operator for search
     "sap/ui/model/Filter",
 
-    "sap/ui/model/FilterOperator"
+    "sap/ui/model/FilterOperator",
+    "sap/ui/model/Sorter"
 
 ], function (
     Controller,
@@ -27,7 +28,8 @@ sap.ui.define([
     MessageToast,
     MessageBox,
     Filter,
-    FilterOperator
+    FilterOperator,
+    Sorter
 ) {
     "use strict";
 
@@ -39,6 +41,11 @@ sap.ui.define([
              * Called when controller is initialized.
              */
             onInit: function () {
+
+
+
+                this._bSalaryDescending = false;
+
 
                 // Model used by Create/Edit dialog
                 this.getView().setModel(
@@ -409,118 +416,151 @@ sap.ui.define([
 
             },
 
-// Search employee by First Name
-onSearch: function (oEvent) {
+            // Search employee by First Name
+            onSearch: function (oEvent) {
 
-    var sValue =
-        oEvent.getParameter("newValue");
+                var sValue =
+                    oEvent.getParameter("newValue");
 
-    var oBinding =
-        this.byId("employeeTable")
-            .getBinding("items");
+                var oBinding =
+                    this.byId("employeeTable")
+                        .getBinding("items");
 
-    // Clear filter when search is empty
-    if (!sValue) {
+                // Clear filter when search is empty
+                if (!sValue) {
 
-        oBinding.filter([]);
-        return;
+                    oBinding.filter([]);
+                    return;
 
-    }
+                }
 
-    var oFilter =
-        new Filter(
-            "FirstName",
-            FilterOperator.Contains,
-            sValue
-        );
+                var oFilter =
+                    new Filter(
+                        "FirstName",
+                        FilterOperator.Contains,
+                        sValue
+                    );
 
-    oBinding.filter([oFilter]);
+                oBinding.filter([oFilter]);
 
-},
+            },
 
 
 
-// Global search on Employee table
-onMultiSearch: function (oEvent) {
+            // Global search on Employee table
+            onMultiSearch: function (oEvent) {
 
-    // Search text entered by user
-    var sValue =
-        oEvent.getParameter("newValue");
+                // Search text entered by user
+                var sValue =
+                    oEvent.getParameter("newValue");
 
-    // Table binding
-    var oBinding =
-        this.byId("employeeTable")
-            .getBinding("items");
+                // Table binding
+                var oBinding =
+                    this.byId("employeeTable")
+                        .getBinding("items");
 
-    // Remove filters when search box is empty
-    if (!sValue) {
+                // Remove filters when search box is empty
+                if (!sValue) {
 
-        oBinding.filter([]);
-        return;
+                    oBinding.filter([]);
+                    return;
 
-    }
+                }
 
-    // Fields which support text search
-    var aFields = [
-        "FirstName",
-        "LastName",
-        "Email"
-    ];
+                // Fields which support text search
+                var aFields = [
+                    "FirstName",
+                    "LastName",
+                    "Email"
+                ];
 
-    // Create Contains filters dynamically
-    var aFilters = aFields.map(function (sField) {
+                // Create Contains filters dynamically
+                var aFilters = aFields.map(function (sField) {
 
-        return new Filter(
-            sField,
-            FilterOperator.Contains,
-            sValue
-        );
+                    return new Filter(
+                        sField,
+                        FilterOperator.Contains,
+                        sValue
+                    );
 
-    });
+                });
 
-    // Salary search
-    // Example:
-    // 75000 -> Salary = 75000
-    if (!isNaN(sValue)) {
+                // Salary search
+                // Example:
+                // 75000 -> Salary = 75000
+                if (!isNaN(sValue)) {
 
-    var aContexts =
-        oBinding.getCurrentContexts();
+                    var aContexts =
+                        oBinding.getCurrentContexts();
 
-    aContexts.forEach(function (oContext) {
+                    aContexts.forEach(function (oContext) {
 
-        var oData =
-            oContext.getObject();
+                        var oData =
+                            oContext.getObject();
 
-        if (
-            oData.Salary &&
-            oData.Salary
-                .toString()
-                .includes(sValue)
-        ) {
+                        if (
+                            oData.Salary &&
+                            oData.Salary
+                                .toString()
+                                .includes(sValue)
+                        ) {
 
-            aFilters.push(
-                new Filter(
-                    "Salary",
-                    FilterOperator.EQ,
-                    oData.Salary
-                )
-            );
+                            aFilters.push(
+                                new Filter(
+                                    "Salary",
+                                    FilterOperator.EQ,
+                                    oData.Salary
+                                )
+                            );
 
-        }
+                        }
 
-    });
+                    });
 
-}
-    // Combine all filters using OR
-    var oFilter = new Filter({
-        filters: aFilters,
-        and: false
-    });
+                }
+                // Combine all filters using OR
+                var oFilter = new Filter({
+                    filters: aFilters,
+                    and: false
+                });
 
-    // Apply filter to table
-    oBinding.filter([oFilter]);
+                // Apply filter to table
+                oBinding.filter([oFilter]);
 
-}
+            },
+
+            /**
+             * Sort salary ascending / descending
+             */
+            onSortBySalary: function () {
+
+                // Toggle sort direction
+                this._bSalaryDescending =
+                    !this._bSalaryDescending;
+
+                var oBinding =
+                    this.byId("employeeTable")
+                        .getBinding("items");
+
+                var oSorter =
+                    new Sorter(
+                        "Salary",
+                        this._bSalaryDescending
+                    );
+
+                oBinding.sort(oSorter);
+
+                // Update icon
+                this.byId("salarySortBtn")
+                    .setIcon(
+                        this._bSalaryDescending
+                            ? "sap-icon://sort-descending"
+                            : "sap-icon://sort-ascending"
+                    );
+
+            }
+
+
 
         }
     );
