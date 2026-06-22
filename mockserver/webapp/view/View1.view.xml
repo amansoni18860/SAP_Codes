@@ -16,32 +16,35 @@
             expand: 'Department'
         }
     }"
+                mode="SingleSelectLeft"
             >
                 <headerToolbar>
-    <Toolbar>
+                    <Toolbar>
+                        <Title text="{i18n>employeeList}" />
 
-        <Title text="{i18n>employeeList}" />
+                        <ToolbarSpacer />
 
-        <ToolbarSpacer />
+                        <Button
+                            text="Create"
+                            press=".onCreate"
+                        />
 
-        <Button
-            text="Create"
-            press=".onCreate" />
+                        <Button
+                            text="Edit"
+                            press=".onEdit"
+                        />
 
-        <Button
-            text="Edit"
-            press=".onEdit" />
+                        <Button
+                            text="Delete"
+                            press=".onDelete"
+                        />
 
-        <Button
-            text="Delete"
-            press=".onDelete" />
-
-        <Button
-            text="Refresh"
-            press=".onRefresh" />
-
-    </Toolbar>
-</headerToolbar>
+                        <Button
+                            text="Refresh"
+                            press=".onRefresh"
+                        />
+                    </Toolbar>
+                </headerToolbar>
                 <columns>
                     <Column>
                         <Text text="{i18n>firstName}" />
