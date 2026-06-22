@@ -483,18 +483,34 @@ onMultiSearch: function (oEvent) {
     // 75000 -> Salary = 75000
     if (!isNaN(sValue)) {
 
-        aFilters.push(
+    var aContexts =
+        oBinding.getCurrentContexts();
 
-            new Filter(
-                "Salary",
-                FilterOperator.EQ,
-                parseFloat(sValue)
-            )
+    aContexts.forEach(function (oContext) {
 
-        );
+        var oData =
+            oContext.getObject();
 
-    }
+        if (
+            oData.Salary &&
+            oData.Salary
+                .toString()
+                .includes(sValue)
+        ) {
 
+            aFilters.push(
+                new Filter(
+                    "Salary",
+                    FilterOperator.EQ,
+                    oData.Salary
+                )
+            );
+
+        }
+
+    });
+
+}
     // Combine all filters using OR
     var oFilter = new Filter({
         filters: aFilters,
