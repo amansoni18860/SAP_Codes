@@ -19,7 +19,8 @@ sap.ui.define([
     "sap/ui/model/Filter",
 
     "sap/ui/model/FilterOperator",
-    "sap/ui/model/Sorter"
+    "sap/ui/model/Sorter",
+     "sap/ui/export/Spreadsheet"
 
 ], function (
     Controller,
@@ -29,7 +30,8 @@ sap.ui.define([
     MessageBox,
     Filter,
     FilterOperator,
-    Sorter
+    Sorter,
+    Spreadsheet
 ) {
     "use strict";
 
@@ -558,7 +560,106 @@ sap.ui.define([
                             : "sap-icon://sort-ascending"
                     );
 
-            }
+            },
+            // EXPORT TO EXCEL
+            onExport: function () {
+
+    var oTable =
+        this.byId("employeeTable");
+
+    var aData =
+        oTable.getBinding("items")
+            .getContexts()
+            .map(function (oContext) {
+
+                var oEmployee =
+                    oContext.getObject();
+
+                return {
+                    EmployeeID:
+                        oEmployee.EmployeeID,
+
+                    FirstName:
+                        oEmployee.FirstName,
+
+                    LastName:
+                        oEmployee.LastName,
+
+                    Email:
+                        oEmployee.Email,
+
+                    Salary:
+                        oEmployee.Salary,
+
+                    Department:
+                        oEmployee.Department
+                            ? oEmployee.Department.DepartmentName
+                            : ""
+                };
+
+            });
+
+    var oSettings = {
+
+        workbook: {
+
+            columns: [
+
+                {
+                    label: "Employee ID",
+                    property: "EmployeeID"
+                },
+
+                {
+                    label: "First Name",
+                    property: "FirstName"
+                },
+
+                {
+                    label: "Last Name",
+                    property: "LastName"
+                },
+
+                {
+                    label: "Email",
+                    property: "Email"
+                },
+
+                {
+                    label: "Salary",
+                    property: "Salary",
+                    type: "Number"
+                },
+
+                {
+                    label: "Department",
+                    property: "Department"
+                }
+
+            ]
+
+        },
+
+        dataSource: aData,
+
+        fileName:
+            "Employees.xlsx"
+
+    };
+
+    var oSpreadsheet =
+        new Spreadsheet(
+            oSettings
+        );
+
+    oSpreadsheet.build()
+        .finally(function () {
+
+            oSpreadsheet.destroy();
+
+        });
+
+}
 
 
 

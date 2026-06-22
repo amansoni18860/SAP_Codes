@@ -56,6 +56,12 @@
                             text="Refresh"
                             press=".onRefresh"
                         />
+                        
+<Button
+    text="Export"
+    icon="sap-icon://excel-attachment"
+    press=".onExport" />
+
                     </Toolbar>
                 </headerToolbar>
                 <columns>
