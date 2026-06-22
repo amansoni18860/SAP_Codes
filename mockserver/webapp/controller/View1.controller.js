@@ -13,14 +13,21 @@ sap.ui.define([
     "sap/m/MessageToast",
 
     // Error and confirmation dialogs
-    "sap/m/MessageBox"
+    "sap/m/MessageBox",
+
+    // Filter and operator for search
+    "sap/ui/model/Filter",
+
+    "sap/ui/model/FilterOperator"
 
 ], function (
     Controller,
     JSONModel,
     Fragment,
     MessageToast,
-    MessageBox
+    MessageBox,
+    Filter,
+    FilterOperator
 ) {
     "use strict";
 
@@ -400,7 +407,104 @@ sap.ui.define([
 
                 }
 
-            }
+            },
+
+// Search employee by First Name
+onSearch: function (oEvent) {
+
+    var sValue =
+        oEvent.getParameter("newValue");
+
+    var oBinding =
+        this.byId("employeeTable")
+            .getBinding("items");
+
+    // Clear filter when search is empty
+    if (!sValue) {
+
+        oBinding.filter([]);
+        return;
+
+    }
+
+    var oFilter =
+        new Filter(
+            "FirstName",
+            FilterOperator.Contains,
+            sValue
+        );
+
+    oBinding.filter([oFilter]);
+
+},
+
+
+
+// Global search on Employee table
+onMultiSearch: function (oEvent) {
+
+    // Search text entered by user
+    var sValue =
+        oEvent.getParameter("newValue");
+
+    // Table binding
+    var oBinding =
+        this.byId("employeeTable")
+            .getBinding("items");
+
+    // Remove filters when search box is empty
+    if (!sValue) {
+
+        oBinding.filter([]);
+        return;
+
+    }
+
+    // Fields which support text search
+    var aFields = [
+        "FirstName",
+        "LastName",
+        "Email"
+    ];
+
+    // Create Contains filters dynamically
+    var aFilters = aFields.map(function (sField) {
+
+        return new Filter(
+            sField,
+            FilterOperator.Contains,
+            sValue
+        );
+
+    });
+
+    // Salary search
+    // Example:
+    // 75000 -> Salary = 75000
+    if (!isNaN(sValue)) {
+
+        aFilters.push(
+
+            new Filter(
+                "Salary",
+                FilterOperator.EQ,
+                parseFloat(sValue)
+            )
+
+        );
+
+    }
+
+    // Combine all filters using OR
+    var oFilter = new Filter({
+        filters: aFilters,
+        and: false
+    });
+
+    // Apply filter to table
+    oBinding.filter([oFilter]);
+
+}
 
         }
     );

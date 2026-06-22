@@ -22,6 +22,19 @@
                     <Toolbar>
                         <Title text="{i18n>employeeList}" />
 
+                        <SearchField
+                            liveChange=".onSearch"
+                            width="200px"
+                            placeholder="Search by first name"
+                        />
+
+                        <SearchField
+                            liveChange=".onMultiSearch"
+                            width="200px"
+                            placeholder="Search by any field"
+                        
+                        />
+
                         <ToolbarSpacer />
 
                         <Button
