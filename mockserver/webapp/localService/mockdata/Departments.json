@@ -1,0 +1,42 @@
+[
+  {
+    "DepartmentID": 101,
+    "DepartmentName": "Engineering"
+  },
+  {
+    "DepartmentID": 102,
+    "DepartmentName": "Finance"
+  },
+  {
+    "DepartmentID": 103,
+    "DepartmentName": "Human Resources"
+  },
+  {
+    "DepartmentID": 104,
+    "DepartmentName": "Information Technology"
+  },
+  {
+    "DepartmentID": 105,
+    "DepartmentName": "Sales"
+  },
+  {
+    "DepartmentID": 106,
+    "DepartmentName": "Marketing"
+  },
+  {
+    "DepartmentID": 107,
+    "DepartmentName": "Operations"
+  },
+  {
+    "DepartmentID": 108,
+    "DepartmentName": "Procurement"
+  },
+  {
+    "DepartmentID": 109,
+    "DepartmentName": "Legal"
+  },
+  {
+    "DepartmentID": 110,
+    "DepartmentName": "Research and Development"
+  }
+]

@@ -1,0 +1,82 @@
+<mvc:View
+    controllerName="demo.mock.mockserver.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+>
+    <Page
+        id="page"
+        title="{i18n>title}"
+    >
+        <content>
+            <Table
+                id="employeeTable"
+                items="{
+        path: '/Employees',
+        parameters: {
+            expand: 'Department'
+        }
+    }"
+            >
+                <headerToolbar>
+    <Toolbar>
+
+        <Title text="{i18n>employeeList}" />
+
+        <ToolbarSpacer />
+
+        <Button
+            text="Create"
+            press=".onCreate" />
+
+        <Button
+            text="Edit"
+            press=".onEdit" />
+
+        <Button
+            text="Delete"
+            press=".onDelete" />
+
+        <Button
+            text="Refresh"
+            press=".onRefresh" />
+
+    </Toolbar>
+</headerToolbar>
+                <columns>
+                    <Column>
+                        <Text text="{i18n>firstName}" />
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>lastName}" />
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>email}" />
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>department}" />
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>hireDate}" />
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>salary}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem type="Active">
+                        <cells>
+                            <Text text="{FirstName}" />
+                            <Text text="{LastName}" />
+                            <Text text="{Email}" />
+                            <Text text="{Department/DepartmentName}" />
+                            <Text
+                                text="{path: 'HireDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'yyyy-MM-dd'}}"
+                            />
+                            <Text text="{Salary}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>

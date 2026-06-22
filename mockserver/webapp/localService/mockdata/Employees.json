@@ -1,0 +1,47 @@
+[
+  {
+    "EmployeeID": 1,
+    "FirstName": "John",
+    "LastName": "Doe",
+    "Email": "john.doe@company.com",
+    "HireDate": "2021-05-10T09:00:00Z",
+    "Salary": 75000.00,
+    "DepartmentID": 101
+  },
+  {
+    "EmployeeID": 2,
+    "FirstName": "Jane",
+    "LastName": "Smith",
+    "Email": "jane.smith@company.com",
+    "HireDate": "2020-03-22T09:00:00Z",
+    "Salary": 82000.00,
+    "DepartmentID": 102
+  },
+  {
+    "EmployeeID": 3,
+    "FirstName": "Michael",
+    "LastName": "Johnson",
+    "Email": "michael.johnson@company.com",
+    "HireDate": "2019-07-15T09:00:00Z",
+    "Salary": 95000.00,
+    "DepartmentID": 101
+  },
+  {
+    "EmployeeID": 4,
+    "FirstName": "Emily",
+    "LastName": "Davis",
+    "Email": "emily.davis@company.com",
+    "HireDate": "2022-01-12T09:00:00Z",
+    "Salary": 68000.00,
+    "DepartmentID": 103
+  },
+  {
+    "EmployeeID": 5,
+    "FirstName": "Robert",
+    "LastName": "Wilson",
+    "Email": "robert.wilson@company.com",
+    "HireDate": "2018-09-18T09:00:00Z",
+    "Salary": 105000.00,
+    "DepartmentID": 104
+  }
+]

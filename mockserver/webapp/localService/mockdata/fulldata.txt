@@ -1,0 +1,137 @@
+[
+  {
+    "EmployeeID": 1,
+    "FirstName": "John",
+    "LastName": "Doe",
+    "Email": "john.doe@company.com",
+    "HireDate": "2021-05-10T09:00:00Z",
+    "Salary": 75000.00,
+    "DepartmentID": 101
+  },
+  {
+    "EmployeeID": 2,
+    "FirstName": "Jane",
+    "LastName": "Smith",
+    "Email": "jane.smith@company.com",
+    "HireDate": "2020-03-22T09:00:00Z",
+    "Salary": 82000.00,
+    "DepartmentID": 102
+  },
+  {
+    "EmployeeID": 3,
+    "FirstName": "Michael",
+    "LastName": "Johnson",
+    "Email": "michael.johnson@company.com",
+    "HireDate": "2019-07-15T09:00:00Z",
+    "Salary": 95000.00,
+    "DepartmentID": 101
+  },
+  {
+    "EmployeeID": 4,
+    "FirstName": "Emily",
+    "LastName": "Davis",
+    "Email": "emily.davis@company.com",
+    "HireDate": "2022-01-12T09:00:00Z",
+    "Salary": 68000.00,
+    "DepartmentID": 103
+  },
+  {
+    "EmployeeID": 5,
+    "FirstName": "Robert",
+    "LastName": "Wilson",
+    "Email": "robert.wilson@company.com",
+    "HireDate": "2018-09-18T09:00:00Z",
+    "Salary": 105000.00,
+    "DepartmentID": 104
+  },
+  {
+    "EmployeeID": 6,
+    "FirstName": "Sarah",
+    "LastName": "Taylor",
+    "Email": "sarah.taylor@company.com",
+    "HireDate": "2021-11-08T09:00:00Z",
+    "Salary": 72000.00,
+    "DepartmentID": 105
+  },
+  {
+    "EmployeeID": 7,
+    "FirstName": "David",
+    "LastName": "Anderson",
+    "Email": "david.anderson@company.com",
+    "HireDate": "2020-06-30T09:00:00Z",
+    "Salary": 88000.00,
+    "DepartmentID": 106
+  },
+  {
+    "EmployeeID": 8,
+    "FirstName": "Jennifer",
+    "LastName": "Thomas",
+    "Email": "jennifer.thomas@company.com",
+    "HireDate": "2019-04-25T09:00:00Z",
+    "Salary": 79000.00,
+    "DepartmentID": 107
+  },
+  {
+    "EmployeeID": 9,
+    "FirstName": "James",
+    "LastName": "Moore",
+    "Email": "james.moore@company.com",
+    "HireDate": "2023-02-14T09:00:00Z",
+    "Salary": 65000.00,
+    "DepartmentID": 108
+  },
+  {
+    "EmployeeID": 10,
+    "FirstName": "Lisa",
+    "LastName": "Martin",
+    "Email": "lisa.martin@company.com",
+    "HireDate": "2021-08-19T09:00:00Z",
+    "Salary": 91000.00,
+    "DepartmentID": 109
+  },
+  {
+    "EmployeeID": 11,
+    "FirstName": "William",
+    "LastName": "Lee",
+    "Email": "william.lee@company.com",
+    "HireDate": "2017-10-03T09:00:00Z",
+    "Salary": 120000.00,
+    "DepartmentID": 110
+  },
+  {
+    "EmployeeID": 12,
+    "FirstName": "Patricia",
+    "LastName": "Walker",
+    "Email": "patricia.walker@company.com",
+    "HireDate": "2022-07-11T09:00:00Z",
+    "Salary": 77000.00,
+    "DepartmentID": 103
+  },
+  {
+    "EmployeeID": 13,
+    "FirstName": "Christopher",
+    "LastName": "Hall",
+    "Email": "christopher.hall@company.com",
+    "HireDate": "2020-12-01T09:00:00Z",
+    "Salary": 98000.00,
+    "DepartmentID": 104
+  },
+  {
+    "EmployeeID": 14,
+    "FirstName": "Amanda",
+    "LastName": "Allen",
+    "Email": "amanda.allen@company.com",
+    "HireDate": "2019-05-20T09:00:00Z",
+    "Salary": 83000.00,
+    "DepartmentID": 105
+  },
+  {
+    "EmployeeID": 15,
+    "FirstName": "Daniel",
+    "LastName": "Young",
+    "Email": "daniel.young@company.com",
+    "HireDate": "2023-01-09T09:00:00Z",
+    "Salary": 71000.00,
+    "DepartmentID": 110
+  }
+]
