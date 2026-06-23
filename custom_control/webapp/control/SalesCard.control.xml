@@ -1,0 +1,32 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <Panel
+        width="300px"
+        class="sapUiResponsiveMargin">
+
+        <VBox class="sapUiMediumMargin">
+
+            <Title
+                text="{$this>title}" />
+
+            <ObjectNumber
+                number="{$this>amount}"
+                unit="INR"
+                emphasized="true" />
+
+            <ObjectStatus
+                text="Growth: {$this>growth}"
+                state="Success" />
+
+            <Button
+                text="View Report"
+                type="Emphasized"
+                press=".onPressDetails" />
+
+        </VBox>
+
+    </Panel>
+
+</core:FragmentDefinition>

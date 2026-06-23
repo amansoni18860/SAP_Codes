@@ -1,0 +1,39 @@
+<mvc:View
+    controllerName="demo.custom.customcontrol.controller.View5"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:custom="demo.custom.customcontrol.control">
+
+    <Page title="Sales Dashboard">
+
+        <content>
+
+            <custom:SalesCard
+
+                title="Q1 Sales"
+
+                amount="250000"
+
+                growth="12%"
+
+                detailsPress=".onShowReport"
+
+            />
+
+            <custom:SalesCard
+
+                title="Q2 Sales"
+
+                amount="450000"
+
+                growth="18%"
+
+                detailsPress=".onShowReport"
+
+            />
+
+        </content>
+
+    </Page>
+
+</mvc:View>
