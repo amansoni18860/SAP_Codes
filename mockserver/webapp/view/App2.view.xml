@@ -1,0 +1,80 @@
+
+<mvc:View
+    controllerName="demo.mock.mockserver.controller.App2"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+
+    <Page title="Mock Server - OData V4">
+
+        <content>
+
+            <Table
+                id="productTable"
+                mode="SingleSelectLeft"
+                items="{/Products}">
+
+                        <headerToolbar>
+                            <Toolbar>
+                                <Title text="Product List" />
+                                <SearchField
+                                    width="200px"
+                                    liveChange=".onSearchProducts"
+                                />
+                                <ToolbarSpacer />
+                                <Button
+                                    text="Add Product"
+                                    press=".onCreate"
+                                />
+                                <Button
+                                    text="Edit Product"
+                                    press=".onEdit"
+                                />
+                                <Button
+                                    text="Delete Product"
+                                    press=".onDelete"
+                                />
+                                <Button
+                                    text="Refresh"
+                                    press=".onRefresh"
+                                />
+                            </Toolbar>
+                        </headerToolbar>
+                        <columns>
+                            <Column>
+                                <Text text="Product ID" />
+                            </Column>
+                            <Column>
+                                <Text text="Name" />
+                            </Column>
+                            <Column>
+                                <Text text="Category" />
+                            </Column>
+                            <Column>
+                                <Text text="Price" />
+                            </Column>
+                            <Column>
+                                <Text text="Stock" />
+                            </Column>
+                            <Column>
+                                <Text text="Created On" />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <Text text="{ProductID}" />
+                                    <Text text="{Name}" />
+                                    <Text text="{Category}" />
+                                    <ObjectNumber
+                                        number="{Price}"
+                                        unit="EUR"
+                                    />
+                                    <Text text="{Stock}" />
+                                    <Text text="{CreatedOn}" />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </content>
+            </Page>
+</mvc:View>

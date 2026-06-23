@@ -1,0 +1,26 @@
+[
+  {
+    "ProductID": 1,
+    "Name": "Laptop",
+    "Category": "Electronics",
+    "Price": 75000.00,
+    "Stock": 25,
+    "CreatedOn": "/Date(1710000000000)/"
+  },
+  {
+    "ProductID": 2,
+    "Name": "Mouse",
+    "Category": "Accessories",
+    "Price": 999.00,
+    "Stock": 100,
+    "CreatedOn": "/Date(1711000000000)/"
+  },
+  {
+    "ProductID": 3,
+    "Name": "Keyboard",
+    "Category": "Accessories",
+    "Price": 1999.00,
+    "Stock": 50,
+    "CreatedOn": "/Date(1712000000000)/"
+  }
+]

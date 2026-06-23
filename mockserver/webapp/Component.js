@@ -69,7 +69,7 @@ sap.ui.define([
     // Reads mock data from:
     // localService/mockdata/*.json
     // ============================================================
-    "./localService/mockserver"
+    "./localService2/mockserver"
 
 ], (
     UIComponent,

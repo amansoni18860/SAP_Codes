@@ -1,0 +1,48 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <Dialog
+        title="Product">
+
+        <VBox class="sapUiSmallMargin">
+
+            <Input
+                value="{productDialog>/Name}"
+                placeholder="Product Name" />
+
+            <Input
+                value="{productDialog>/Category}"
+                placeholder="Category" />
+
+            <Input
+                value="{productDialog>/Price}"
+                type="Number"
+                placeholder="Price" />
+
+            <Input
+                value="{productDialog>/Stock}"
+                type="Number"
+                placeholder="Stock" />
+
+        </VBox>
+
+        <beginButton>
+
+            <Button
+                text="Save"
+                press=".onSave" />
+
+        </beginButton>
+
+        <endButton>
+
+            <Button
+                text="Cancel"
+                press=".onCancel" />
+
+        </endButton>
+
+    </Dialog>
+
+</core:FragmentDefinition>
