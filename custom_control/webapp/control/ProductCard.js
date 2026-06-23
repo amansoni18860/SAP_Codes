@@ -5,7 +5,7 @@ sap.ui.define([
     "use strict";
 
     return Control.extend(
-        "demo.control.ProductCard",
+        "demo.custom.customcontrol.control.ProductCard",
         {
 
             /*

@@ -1,0 +1,19 @@
+<mvc:View
+    controllerName="demo.custom.customcontrol.controller.View2"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:custom="demo.custom.customcontrol.control">
+
+    <Page title="Rating Control Demo">
+
+        <content>
+
+            <custom:RatingControl
+                rating="3"
+                rate=".onRate"/>
+
+        </content>
+
+    </Page>
+
+</mvc:View>

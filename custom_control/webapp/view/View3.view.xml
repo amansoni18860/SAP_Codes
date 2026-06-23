@@ -1,0 +1,24 @@
+<mvc:View
+    controllerName="demo.custom.customcontrol.controller.View3"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:custom="demo.custom.customcontrol.control">
+
+    <Page title="Traffic Light Demo">
+
+        <content>
+
+            <custom:TrafficLight
+                status="Red"/>
+
+            <custom:TrafficLight
+                status="Yellow"/>
+
+            <custom:TrafficLight
+                status="Green"/>
+
+        </content>
+
+    </Page>
+
+</mvc:View>
