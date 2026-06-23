@@ -1,0 +1,51 @@
+<mvc:View
+    controllerName="demo.custom.customcontrol.controller.View4"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:custom="demo.custom.customcontrol.control">
+
+    <Page title="Customer Approvals">
+
+        <content>
+
+            <custom:CustomerCard
+
+                customerId="C1001"
+
+                customerName="Aman Enterprises"
+
+                city="Bangalore"
+
+                creditLimit="250000"
+
+                status="Pending"
+
+                approve=".onApproveCustomer"
+
+                reject=".onRejectCustomer"
+
+            />
+
+            <custom:CustomerCard
+
+                customerId="C1002"
+
+                customerName="Tech Solutions"
+
+                city="Hyderabad"
+
+                creditLimit="400000"
+
+                status="Pending"
+
+                approve=".onApproveCustomer"
+
+                reject=".onRejectCustomer"
+
+            />
+
+        </content>
+
+    </Page>
+
+</mvc:View>
