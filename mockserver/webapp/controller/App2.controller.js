@@ -21,427 +21,662 @@ sap.ui.define([
 ) {
     "use strict";
 
-    return Controller.extend("demo.mock.mockserver.controller.App2", {
+    return Controller.extend(
+        "demo.mock.mockserver.controller.App2",
+        {
 
-        onInit: function () {
+            onInit: function () {
 
-            this._bPriceDescending = false;
+                this._bPriceDescending = false;
+                this._iSkip = 0;
 
-            this.getView().setModel(
-                new JSONModel({}),
-                "productDialog"
-            );
-
-        },
-
-        // =========================
-        // CREATE
-        // =========================
-
-        onCreate: async function () {
-
-            this._mode = "CREATE";
-
-            this.getView()
-                .getModel("productDialog")
-                .setData({
-                    ProductID: Date.now(),
-                    Name: "",
-                    Category: "",
-                    Price: 0,
-                    Stock: 0,
-                    CreatedOn: new Date()
-                });
-
-            await this._openProductDialog();
-
-        },
-
-        // =========================
-        // EDIT
-        // =========================
-
-        onEdit: async function () {
-
-            var oItem = this.byId("productTable")
-                .getSelectedItem();
-
-            if (!oItem) {
-
-                MessageToast.show("Select a product");
-                return;
-
-            }
-
-            this._mode = "UPDATE";
-
-            this._sPath = oItem
-                .getBindingContext()
-                .getPath();
-
-            var oProduct = oItem
-                .getBindingContext()
-                .getObject();
-
-            this.getView()
-                .getModel("productDialog")
-                .setData({
-
-                    ProductID: oProduct.ProductID,
-                    Name: oProduct.Name,
-                    Category: oProduct.Category,
-                    Price: oProduct.Price,
-                    Stock: oProduct.Stock,
-                    CreatedOn: oProduct.CreatedOn
-
-                });
-
-            await this._openProductDialog();
-
-        },
-
-        // =========================
-        // SAVE
-        // =========================
-
-        onSave: function () {
-
-            var oModel = this.getView().getModel();
-
-            var oData = this.getView()
-                .getModel("productDialog")
-                .getData();
-
-            var oPayload = {
-
-                ProductID: oData.ProductID,
-                Name: oData.Name,
-                Category: oData.Category,
-                Price: oData.Price,
-                Stock: oData.Stock,
-                CreatedOn: oData.CreatedOn
-
-            };
-
-            if (this._mode === "CREATE") {
-
-                oModel.create("/Products", oPayload, {
-
-                    success: function () {
-
-                        MessageToast.show(
-                            "Product Created Successfully"
-                        );
-
-                        this.onRefresh();
-
-                    }.bind(this),
-
-                    error: function () {
-
-                        MessageBox.error(
-                            "Product creation failed"
-                        );
-
-                    }
-
-                });
-
-            } else {
-
-                oModel.update(
-                    this._sPath,
-                    oPayload,
-                    {
-
-                        success: function () {
-
-                            MessageToast.show(
-                                "Product Updated Successfully"
-                            );
-
-                            this.onRefresh();
-
-                        }.bind(this),
-
-                        error: function () {
-
-                            MessageBox.error(
-                                "Product update failed"
-                            );
-
-                        }
-
-                    }
+                this.getView().setModel(
+                    new JSONModel({}),
+                    "productDialog"
                 );
 
-            }
+            },
 
-            this._oDialog.close();
+            // =========================
+            // TOP 5
+            // =========================
 
-        },
+            onTop5: function () {
 
-        // =========================
-        // DELETE
-        // =========================
+                var oBinding =
+                    this.byId("productTable")
+                        .getBinding("items");
 
-        onDelete: function () {
-
-            var oItem = this.byId("productTable")
-                .getSelectedItem();
-
-            if (!oItem) {
+                var aContexts =
+                    oBinding.getContexts(0, 5);
 
                 MessageToast.show(
-                    "Select a product"
+                    "Top 5 records fetched. Check Console."
                 );
 
-                return;
+                console.log(
+                    aContexts.map(function (oContext) {
+                        return oContext.getObject();
+                    })
+                );
 
-            }
+            },
 
-            var sPath = oItem
-                .getBindingContext()
-                .getPath();
+            // =========================
+            // NEXT 5
+            // =========================
 
-            MessageBox.confirm(
-                "Delete selected product?",
-                {
+            onNext5: function () {
 
-                    onClose: function (sAction) {
+                this._iSkip += 5;
 
-                        if (sAction !== MessageBox.Action.OK) {
-                            return;
-                        }
+                var oBinding =
+                    this.byId("productTable")
+                        .getBinding("items");
 
-                        this.getView()
-                            .getModel()
-                            .remove(
-                                sPath,
-                                {
+                var aContexts =
+                    oBinding.getContexts(
+                        this._iSkip,
+                        5
+                    );
 
-                                    success: function () {
+                MessageToast.show(
+                    "Next 5 records fetched. Check Console."
+                );
 
-                                        MessageToast.show(
-                                            "Product Deleted"
-                                        );
+                console.log(
+                    aContexts.map(function (oContext) {
+                        return oContext.getObject();
+                    })
+                );
 
-                                        this.onRefresh();
+            },
 
-                                    }.bind(this),
+            // =========================
+            // FILTER PRICE
+            // =========================
 
-                                    error: function () {
+            onFilterPrice: function () {
 
-                                        MessageBox.error(
-                                            "Delete failed"
-                                        );
+                var oBinding =
+                    this.byId("productTable")
+                        .getBinding("items");
 
-                                    }
-
-                                }
-                            );
-
-                    }.bind(this)
-
-                }
-            );
-
-        },
-
-        // =========================
-        // SEARCH
-        // =========================
-
-        onSearchProducts: function (oEvent) {
-
-            var sValue = oEvent.getParameter(
-                "newValue"
-            );
-
-            var oBinding = this.byId(
-                "productTable"
-            ).getBinding("items");
-
-            if (!sValue) {
-
-                oBinding.filter([]);
-                return;
-
-            }
-
-            var oFilter = new Filter({
-
-                filters: [
-
+                oBinding.filter([
                     new Filter(
-                        "Name",
-                        FilterOperator.Contains,
-                        sValue
-                    ),
-
-                    new Filter(
-                        "Category",
-                        FilterOperator.Contains,
-                        sValue
+                        "Price",
+                        FilterOperator.GT,
+                        5000
                     )
+                ]);
 
-                ],
+            },
 
-                and: false
+            // =========================
+            // SORT PRICE
+            // =========================
 
-            });
+            onSortPrice: function () {
 
-            oBinding.filter([oFilter]);
+                this._bPriceDescending =
+                    !this._bPriceDescending;
 
-        },
+                this.byId("productTable")
+                    .getBinding("items")
+                    .sort(
+                        new Sorter(
+                            "Price",
+                            this._bPriceDescending
+                        )
+                    );
 
-        // =========================
-        // REFRESH
-        // =========================
+            },
 
-        onRefresh: function () {
+            // =========================
+            // COUNT
+            // =========================
 
-            var oBinding = this.byId(
-                "productTable"
-            ).getBinding("items");
+            onCountProducts: function () {
 
-            if (oBinding) {
+                var iCount =
+                    this.byId("productTable")
+                        .getBinding("items")
+                        .getLength();
 
-                oBinding.refresh();
+                MessageToast.show(
+                    "Total Products : " +
+                    iCount
+                );
 
-            }
+            },
 
-        },
+            // =========================
+            // SELECT DEMO
+            // =========================
 
-        // =========================
-        // SORT PRICE
-        // =========================
+            onSelectFields: function () {
 
-        onSortPrice: function () {
+                var aData =
+                    this.byId("productTable")
+                        .getBinding("items")
+                        .getContexts()
+                        .map(function (oContext) {
 
-            this._bPriceDescending =
-                !this._bPriceDescending;
+                            var oObj =
+                                oContext.getObject();
 
-            this.byId("productTable")
-                .getBinding("items")
-                .sort(
+                            return {
+
+                                ProductID:
+                                    oObj.ProductID,
+
+                                Name:
+                                    oObj.Name,
+
+                                Price:
+                                    oObj.Price
+
+                            };
+
+                        });
+
+                console.log(aData);
+
+                MessageToast.show(
+                    "Selected fields logged in console"
+                );
+
+            },
+
+            // =========================
+            // ADVANCED QUERY DEMO
+            // =========================
+
+            onAdvancedQuery: function () {
+
+                var oBinding =
+                    this.byId("productTable")
+                        .getBinding("items");
+
+                oBinding.filter([
+                    new Filter(
+                        "Stock",
+                        FilterOperator.GT,
+                        0
+                    )
+                ]);
+
+                oBinding.sort([
                     new Sorter(
                         "Price",
-                        this._bPriceDescending
+                        true
                     )
+                ]);
+
+            },
+
+            // =========================
+            // CREATE
+            // =========================
+
+            onCreate: async function () {
+
+                this._mode = "CREATE";
+
+                this.getView()
+                    .getModel("productDialog")
+                    .setData({
+
+                        ProductID:
+                            Date.now(),
+
+                        Name: "",
+
+                        Category: "",
+
+                        Price: 0,
+
+                        Stock: 0,
+
+                        CreatedOn:
+                            new Date()
+
+                    });
+
+                await this._openProductDialog();
+
+            },
+
+            // =========================
+            // EDIT
+            // =========================
+
+            onEdit: async function () {
+
+                var oItem =
+                    this.byId(
+                        "productTable"
+                    ).getSelectedItem();
+
+                if (!oItem) {
+
+                    MessageToast.show(
+                        "Select a Product"
+                    );
+
+                    return;
+
+                }
+
+                this._mode = "UPDATE";
+
+                this._sPath =
+                    oItem.getBindingContext()
+                        .getPath();
+
+                var oProduct =
+                    oItem.getBindingContext()
+                        .getObject();
+
+                this.getView()
+                    .getModel(
+                        "productDialog"
+                    )
+                    .setData(
+                        Object.assign(
+                            {},
+                            oProduct
+                        )
+                    );
+
+                await this._openProductDialog();
+
+            },
+
+            // =========================
+            // SAVE
+            // =========================
+
+            onSave: function () {
+
+                var oModel =
+                    this.getView().getModel();
+
+                var oData =
+                    this.getView()
+                        .getModel(
+                            "productDialog"
+                        )
+                        .getData();
+
+                if (
+                    this._mode ===
+                    "CREATE"
+                ) {
+
+                    oModel.create(
+                        "/Products",
+                        oData,
+                        {
+
+                            success: function () {
+
+                                MessageToast.show(
+                                    "Product Created"
+                                );
+
+                                this.onRefresh();
+
+                            }.bind(this),
+
+                            error: function () {
+
+                                MessageBox.error(
+                                    "Create failed"
+                                );
+
+                            }
+
+                        }
+                    );
+
+                } else {
+
+                    oModel.update(
+                        this._sPath,
+                        oData,
+                        {
+
+                            success: function () {
+
+                                MessageToast.show(
+                                    "Product Updated"
+                                );
+
+                                this.onRefresh();
+
+                            }.bind(this),
+
+                            error: function () {
+
+                                MessageBox.error(
+                                    "Update failed"
+                                );
+
+                            }
+
+                        }
+                    );
+
+                }
+
+                this._oDialog.close();
+
+            },
+
+            // =========================
+            // DELETE
+            // =========================
+
+            onDelete: function () {
+
+                var oItem =
+                    this.byId(
+                        "productTable"
+                    ).getSelectedItem();
+
+                if (!oItem) {
+
+                    MessageToast.show(
+                        "Select a Product"
+                    );
+
+                    return;
+
+                }
+
+                var sPath =
+                    oItem.getBindingContext()
+                        .getPath();
+
+                MessageBox.confirm(
+                    "Delete selected product?",
+                    {
+
+                        onClose:
+                            function (
+                                sAction
+                            ) {
+
+                                if (
+                                    sAction !==
+                                    MessageBox.Action.OK
+                                ) {
+                                    return;
+                                }
+
+                                this.getView()
+                                    .getModel()
+                                    .remove(
+                                        sPath,
+                                        {
+
+                                            success:
+                                                function () {
+
+                                                    MessageToast.show(
+                                                        "Deleted"
+                                                    );
+
+                                                    this.onRefresh();
+
+                                                }.bind(this),
+
+                                            error:
+                                                function () {
+
+                                                    MessageBox.error(
+                                                        "Delete Failed"
+                                                    );
+
+                                                }
+
+                                        }
+                                    );
+
+                            }.bind(this)
+
+                    }
                 );
 
-        },
+            },
 
-        // =========================
-        // EXPORT
-        // =========================
+            // =========================
+            // SEARCH
+            // =========================
 
-        onExport: function () {
+            onSearchProducts: function (
+                oEvent
+            ) {
 
-            var aData = this.byId(
-                "productTable"
-            )
-                .getBinding("items")
-                .getContexts()
-                .map(function (oContext) {
+                var sValue =
+                    oEvent.getParameter(
+                        "newValue"
+                    );
 
-                    return oContext.getObject();
+                var oBinding =
+                    this.byId(
+                        "productTable"
+                    ).getBinding(
+                        "items"
+                    );
 
-                });
+                if (!sValue) {
 
-            var oSheet = new Spreadsheet({
+                    oBinding.filter([]);
 
-                workbook: {
+                    return;
 
-                    columns: [
+                }
 
-                        {
-                            label: "Product ID",
-                            property: "ProductID"
+                var oFilter =
+                    new Filter({
+
+                        filters: [
+
+                            new Filter(
+                                "Name",
+                                FilterOperator.Contains,
+                                sValue
+                            ),
+
+                            new Filter(
+                                "Category",
+                                FilterOperator.Contains,
+                                sValue
+                            )
+
+                        ],
+
+                        and: false
+
+                    });
+
+                oBinding.filter([
+                    oFilter
+                ]);
+
+            },
+
+            // =========================
+            // REFRESH
+            // =========================
+
+            onRefresh: function () {
+
+                var oBinding =
+                    this.byId(
+                        "productTable"
+                    ).getBinding(
+                        "items"
+                    );
+
+                if (oBinding) {
+
+                    oBinding.refresh();
+
+                }
+
+            },
+
+            // =========================
+            // EXPORT
+            // =========================
+
+            onExport: function () {
+
+                var aData =
+                    this.byId(
+                        "productTable"
+                    )
+                        .getBinding(
+                            "items"
+                        )
+                        .getContexts()
+                        .map(
+                            function (
+                                oContext
+                            ) {
+
+                                return oContext.getObject();
+
+                            }
+                        );
+
+                var oSheet =
+                    new Spreadsheet({
+
+                        workbook: {
+
+                            columns: [
+
+                                {
+                                    label:
+                                        "Product ID",
+                                    property:
+                                        "ProductID"
+                                },
+
+                                {
+                                    label:
+                                        "Name",
+                                    property:
+                                        "Name"
+                                },
+
+                                {
+                                    label:
+                                        "Category",
+                                    property:
+                                        "Category"
+                                },
+
+                                {
+                                    label:
+                                        "Price",
+                                    property:
+                                        "Price"
+                                },
+
+                                {
+                                    label:
+                                        "Stock",
+                                    property:
+                                        "Stock"
+                                },
+
+                                {
+                                    label:
+                                        "Created On",
+                                    property:
+                                        "CreatedOn"
+                                }
+
+                            ]
+
                         },
 
-                        {
-                            label: "Name",
-                            property: "Name"
-                        },
+                        dataSource:
+                            aData,
 
-                        {
-                            label: "Category",
-                            property: "Category"
-                        },
+                        fileName:
+                            "Products.xlsx"
 
-                        {
-                            label: "Price",
-                            property: "Price"
-                        },
+                    });
 
-                        {
-                            label: "Stock",
-                            property: "Stock"
-                        },
+                oSheet
+                    .build()
+                    .finally(
+                        function () {
 
-                        {
-                            label: "Created On",
-                            property: "CreatedOn"
+                            oSheet.destroy();
+
                         }
+                    );
 
-                    ]
+            },
+
+            // =========================
+            // DIALOG
+            // =========================
+
+            _openProductDialog:
+                async function () {
+
+                    if (
+                        !this._oDialog
+                    ) {
+
+                        this._oDialog =
+                            await Fragment.load({
+
+                                name:
+                                    "demo.mock.mockserver.fragment.ProductDialog",
+
+                                controller:
+                                    this
+
+                            });
+
+                        this.getView()
+                            .addDependent(
+                                this._oDialog
+                            );
+
+                    }
+
+                    this._oDialog.open();
 
                 },
 
-                dataSource: aData,
+            // =========================
+            // CANCEL
+            // =========================
 
-                fileName: "Products.xlsx"
+            onCancel: function () {
 
-            });
+                if (
+                    this._oDialog
+                ) {
 
-            oSheet.build()
-                .finally(function () {
+                    this._oDialog.close();
 
-                    oSheet.destroy();
-
-                });
-
-        },
-
-        // =========================
-        // DIALOG
-        // =========================
-
-        _openProductDialog: async function () {
-
-            if (!this._oDialog) {
-
-                this._oDialog = await Fragment.load({
-
-                    name: "demo.mock.mockserver.fragment.ProductDialog",
-
-                    controller: this
-
-                });
-
-                this.getView()
-                    .addDependent(
-                        this._oDialog
-                    );
+                }
 
             }
 
-            this._oDialog.open();
-
-        },
-
-        // =========================
-        // CANCEL
-        // =========================
-
-        onCancel: function () {
-
-            this._oDialog.close();
-
         }
 
-    });
+    );
 
 });

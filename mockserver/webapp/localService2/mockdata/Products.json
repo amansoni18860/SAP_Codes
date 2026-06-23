@@ -22,5 +22,101 @@
     "Price": 1999.00,
     "Stock": 50,
     "CreatedOn": "/Date(1712000000000)/"
+  },
+  {
+    "ProductID": 4,
+    "Name": "Monitor",
+    "Category": "Electronics",
+    "Price": 15000.00,
+    "Stock": 30,
+    "CreatedOn": "/Date(1713000000000)/"
+  },
+  {
+    "ProductID": 5,
+    "Name": "Printer",
+    "Category": "Office",
+    "Price": 12000.00,
+    "Stock": 15,
+    "CreatedOn": "/Date(1714000000000)/"
+  },
+  {
+    "ProductID": 6,
+    "Name": "Scanner",
+    "Category": "Office",
+    "Price": 8500.00,
+    "Stock": 20,
+    "CreatedOn": "/Date(1715000000000)/"
+  },
+  {
+    "ProductID": 7,
+    "Name": "Webcam",
+    "Category": "Accessories",
+    "Price": 2500.00,
+    "Stock": 60,
+    "CreatedOn": "/Date(1716000000000)/"
+  },
+  {
+    "ProductID": 8,
+    "Name": "Headphones",
+    "Category": "Audio",
+    "Price": 3500.00,
+    "Stock": 70,
+    "CreatedOn": "/Date(1717000000000)/"
+  },
+  {
+    "ProductID": 9,
+    "Name": "Speaker",
+    "Category": "Audio",
+    "Price": 5500.00,
+    "Stock": 40,
+    "CreatedOn": "/Date(1718000000000)/"
+  },
+  {
+    "ProductID": 10,
+    "Name": "Tablet",
+    "Category": "Electronics",
+    "Price": 28000.00,
+    "Stock": 18,
+    "CreatedOn": "/Date(1719000000000)/"
+  },
+  {
+    "ProductID": 11,
+    "Name": "Smartphone",
+    "Category": "Electronics",
+    "Price": 45000.00,
+    "Stock": 35,
+    "CreatedOn": "/Date(1720000000000)/"
+  },
+  {
+    "ProductID": 12,
+    "Name": "Power Bank",
+    "Category": "Accessories",
+    "Price": 1800.00,
+    "Stock": 90,
+    "CreatedOn": "/Date(1721000000000)/"
+  },
+  {
+    "ProductID": 13,
+    "Name": "USB Drive",
+    "Category": "Storage",
+    "Price": 799.00,
+    "Stock": 120,
+    "CreatedOn": "/Date(1722000000000)/"
+  },
+  {
+    "ProductID": 14,
+    "Name": "External HDD",
+    "Category": "Storage",
+    "Price": 6500.00,
+    "Stock": 22,
+    "CreatedOn": "/Date(1723000000000)/"
+  },
+  {
+    "ProductID": 15,
+    "Name": "Router",
+    "Category": "Networking",
+    "Price": 3200.00,
+    "Stock": 45,
+    "CreatedOn": "/Date(1724000000000)/"
   }
 ]

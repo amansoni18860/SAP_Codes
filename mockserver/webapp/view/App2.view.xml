@@ -37,6 +37,27 @@
                                     text="Refresh"
                                     press=".onRefresh"
                                 />
+
+
+                                <Button
+    text="Top 5"
+    press=".onTop5"
+/>
+
+<Button
+    text="Next 5"
+    press=".onNext5"
+/>
+
+<Button
+    text="Expand"
+    press=".onExpand"
+/>
+
+<Button
+    text="Price > 100"
+    press=".onFilterPrice"
+/>
                             </Toolbar>
                         </headerToolbar>
                         <columns>
