@@ -1,0 +1,35 @@
+<mvc:View
+    controllerName="demo.custom.customcontrol.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:custom="demo.custom.customcontrol.control"
+>
+    <Page title="Custom Control Demo">
+        <content>
+            <custom:ProductCard
+                title="Laptop"
+                category="Electronics"
+                price="75000"
+                press=".onCardPress"
+            />
+
+            <custom:ProductCard
+                title="Mobile"
+                category="Electronics"
+                price="45000"
+                press=".onCardPress"
+            />
+
+            <!--   internally becomes: 
+    <div>
+
+   <h2>Laptop</h2>
+
+   <p>Category : Electronics</p>
+
+   <p>Price : ₹75000</p>
+
+</div> -->
+        </content>
+    </Page>
+</mvc:View>
