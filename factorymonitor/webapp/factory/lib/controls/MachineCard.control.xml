@@ -1,0 +1,28 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <Panel
+        width="350px"
+        headerText="Machine Dashboard">
+
+        <content>
+
+            <VBox class="sapUiSmallMargin">
+
+                <Title text="{$this>title}" />
+
+                <ObjectNumber
+                    number="{$this>temperature}"
+                    unit="°C" />
+
+                <ObjectStatus
+                    text="{$this>status}" />
+
+            </VBox>
+
+        </content>
+
+    </Panel>
+
+</core:FragmentDefinition>

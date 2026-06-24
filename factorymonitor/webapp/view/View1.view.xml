@@ -2,31 +2,25 @@
     controllerName="com.training.factory.factorymonitor.controller.View1"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
-    xmlns:custom="com.training.factory.factorymonitor.control">
+    xmlns:lib="factory.lib.controls">
 
-    <Page title="Machine Monitoring">
+    <Page title="Machine Monitor">
 
         <content>
 
             <VBox class="sapUiMediumMargin">
 
-                <Label text="Enter Temperature"/>
-
                 <Input
                     id="tempInput"
-                    width="200px"
-                    placeholder="Enter value"/>
+                    placeholder="Temperature" />
 
                 <Button
                     text="Check Machine"
-                    type="Emphasized"
-                    press=".onCheckMachine"/>
+                    press=".onCheckMachine" />
 
-                <custom:MachineCard
+                <lib:MachineCard
                     id="machineCard"
-                    title="Boiler Unit"
-                    temperature="0"
-                    status="Waiting"/>
+                    title="Boiler Unit"/>
 
             </VBox>
 

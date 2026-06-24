@@ -4,7 +4,7 @@ sap.ui.define([
     "use strict";
 
     return XMLComposite.extend(
-        "com.training.factory.factorymonitor.control.MachineCard",
+        "factory.lib.controls.MachineCard",
         {
             metadata: {
                 properties: {
@@ -12,13 +12,13 @@ sap.ui.define([
                         type: "string",
                         defaultValue: ""
                     },
-                    status: {
-                        type: "string",
-                        defaultValue: ""
-                    },
                     temperature: {
                         type: "int",
                         defaultValue: 0
+                    },
+                    status: {
+                        type: "string",
+                        defaultValue: ""
                     }
                 }
             }

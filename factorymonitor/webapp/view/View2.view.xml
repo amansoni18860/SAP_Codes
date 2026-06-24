@@ -2,7 +2,7 @@
     controllerName="com.training.factory.factorymonitor.controller.View2"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
-    xmlns:custom="com.training.factory.factorymonitor.control">
+    xmlns:lib="factory.lib.controls">
 
     <Page title="Bonus Calculator">
 
@@ -16,19 +16,15 @@
 
                 <Input
                     id="salary"
-                    placeholder="Salary"
-                    type="Number"/>
+                    type="Number"
+                    placeholder="Salary"/>
 
                 <Button
                     text="Calculate Bonus"
-                    type="Emphasized"
                     press=".onCalculate"/>
 
-                <custom:EmployeeCard
-                    id="empCard"
-                    employeeName="Employee"
-                    salary="0"
-                    bonus="0"/>
+                <lib:EmployeeCard
+                    id="empCard"/>
 
             </VBox>
 

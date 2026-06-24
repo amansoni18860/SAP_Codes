@@ -1,6 +1,6 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "com/training/factory/factorymonitor/factory/lib/BonusCalculator"
+    "factory/lib/BonusCalculator"
 ], function (
     Controller,
     BonusCalculator

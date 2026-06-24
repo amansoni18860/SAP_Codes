@@ -41,6 +41,11 @@
         "sap.ui.core": {}
       }
     },
+    
+"resourceRoots": {
+      "factory.lib": "factory/lib"
+    }
+,
     "contentDensities": {
       "compact": true,
       "cozy": true
@@ -83,8 +88,8 @@
       ],
       "targets": {
         "TargetView1": {
-          "id": "View2",
-          "name": "View2"
+          "id": "View1",
+          "name": "View1"
         }
       }
     },

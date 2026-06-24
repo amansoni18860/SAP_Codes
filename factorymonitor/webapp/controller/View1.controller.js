@@ -1,6 +1,6 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "com/training/factory/factorymonitor/factory/lib/MachineAnalyzer"
+    "factory/lib/MachineAnalyzer"
 ], function (
     Controller,
     MachineAnalyzer
@@ -13,14 +13,15 @@ sap.ui.define([
 
             onCheckMachine: function () {
 
-                var iTemp =
-                    parseInt(
-                        this.byId("tempInput").getValue(),
-                        10
-                    );
+                var iTemp = parseInt(
+                    this.byId("tempInput").getValue(),
+                    10
+                );
 
                 var sStatus =
-                    MachineAnalyzer.getMachineStatus(iTemp);
+                    MachineAnalyzer.getMachineStatus(
+                        iTemp
+                    );
 
                 var oCard =
                     this.byId("machineCard");
