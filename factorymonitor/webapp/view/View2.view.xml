@@ -1,0 +1,39 @@
+<mvc:View
+    controllerName="com.training.factory.factorymonitor.controller.View2"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:custom="com.training.factory.factorymonitor.control">
+
+    <Page title="Bonus Calculator">
+
+        <content>
+
+            <VBox class="sapUiMediumMargin">
+
+                <Input
+                    id="empName"
+                    placeholder="Employee Name"/>
+
+                <Input
+                    id="salary"
+                    placeholder="Salary"
+                    type="Number"/>
+
+                <Button
+                    text="Calculate Bonus"
+                    type="Emphasized"
+                    press=".onCalculate"/>
+
+                <custom:EmployeeCard
+                    id="empCard"
+                    employeeName="Employee"
+                    salary="0"
+                    bonus="0"/>
+
+            </VBox>
+
+        </content>
+
+    </Page>
+
+</mvc:View>

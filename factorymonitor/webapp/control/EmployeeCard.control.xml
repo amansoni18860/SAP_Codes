@@ -1,0 +1,29 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <Panel
+        headerText="Employee Bonus Details"
+        width="400px">
+
+        <content>
+
+            <VBox class="sapUiSmallMargin">
+
+                <Title
+                    text="{$this>employeeName}" />
+
+                <ObjectNumber
+                    number="{$this>salary}"
+                    unit="₹" />
+
+                <ObjectStatus
+                    text="Bonus: {$this>bonus}" />
+
+            </VBox>
+
+        </content>
+
+    </Panel>
+
+</core:FragmentDefinition>
