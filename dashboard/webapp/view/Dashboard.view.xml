@@ -1,0 +1,418 @@
+<mvc:View
+    controllerName="demo.dash.dashboard.controller.Dashboard"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds">
+
+    <Page title="Executive Sales Analytics Dashboard">
+
+        <content>
+
+            <VBox class="sapUiMediumMargin">
+
+                <!-- ======================================= -->
+                <!-- KPI SECTION                             -->
+                <!-- ======================================= -->
+
+                <HBox
+                    justifyContent="SpaceAround"
+                    wrap="Wrap">
+
+                    <GenericTile header="Revenue">
+                        <TileContent>
+                            <NumericContent
+                                value="{/kpi/revenue}"
+                                valueColor="Good"/>
+                        </TileContent>
+                    </GenericTile>
+
+                    <GenericTile header="Orders">
+                        <TileContent>
+                            <NumericContent
+                                value="{/kpi/orders}"
+                                valueColor="Neutral"/>
+                        </TileContent>
+                    </GenericTile>
+
+                    <GenericTile header="Customers">
+                        <TileContent>
+                            <NumericContent
+                                value="{/kpi/customers}"
+                                valueColor="Good"/>
+                        </TileContent>
+                    </GenericTile>
+
+                    <GenericTile header="Profit">
+                        <TileContent>
+                            <NumericContent
+                                value="{/kpi/profit}"
+                                valueColor="Good"/>
+                        </TileContent>
+                    </GenericTile>
+
+                    <GenericTile header="Growth">
+                        <TileContent>
+                            <NumericContent
+                                value="{/kpi/growth}"
+                                valueColor="Critical"/>
+                        </TileContent>
+                    </GenericTile>
+
+                    <GenericTile header="Target">
+                        <TileContent>
+                            <NumericContent
+                                value="{/kpi/targetAchievement}"
+                                valueColor="Good"/>
+                        </TileContent>
+                    </GenericTile>
+
+                </HBox>
+
+                <!-- ======================================= -->
+                <!-- EXECUTIVE INSIGHTS                      -->
+                <!-- ======================================= -->
+
+                <MessageStrip
+                    text="Revenue increased steadily from January to June."
+                    type="Success"
+                    showIcon="true"/>
+
+                <MessageStrip
+                    text="South region is contributing highest revenue."
+                    type="Information"
+                    showIcon="true"/>
+
+                <MessageStrip
+                    text="Electronics category remains top performer."
+                    type="Success"
+                    showIcon="true"/>
+
+                <!-- ======================================= -->
+                <!-- REVENUE CHART                           -->
+                <!-- ======================================= -->
+
+                <Panel headerText="Monthly Revenue Analysis">
+
+                    <viz:VizFrame
+                        id="revenueChart"
+                        width="100%"
+                        height="450px"
+                        vizType="column">
+
+                        <viz:dataset>
+
+                            <viz.data:FlattenedDataset
+                                data="{/sales}">
+
+                                <viz.data:dimensions>
+
+                                    <viz.data:DimensionDefinition
+                                        name="Month"
+                                        value="{month}" />
+
+                                </viz.data:dimensions>
+
+                                <viz.data:measures>
+
+                                    <viz.data:MeasureDefinition
+                                        name="Revenue"
+                                        value="{revenue}" />
+
+                                </viz.data:measures>
+
+                            </viz.data:FlattenedDataset>
+
+                        </viz:dataset>
+
+                        <viz:feeds>
+
+                            <viz.feeds:FeedItem
+                                uid="valueAxis"
+                                type="Measure"
+                                values="Revenue"/>
+
+                            <viz.feeds:FeedItem
+                                uid="categoryAxis"
+                                type="Dimension"
+                                values="Month"/>
+
+                        </viz:feeds>
+
+                    </viz:VizFrame>
+
+                </Panel>
+
+                <!-- ======================================= -->
+                <!-- ORDER TREND                             -->
+                <!-- ======================================= -->
+
+                <Panel headerText="Order Trend Analysis">
+
+                    <viz:VizFrame
+                        width="100%"
+                        height="450px"
+                        vizType="line">
+
+                        <viz:dataset>
+
+                            <viz.data:FlattenedDataset
+                                data="{/sales}">
+
+                                <viz.data:dimensions>
+
+                                    <viz.data:DimensionDefinition
+                                        name="Month"
+                                        value="{month}" />
+
+                                </viz.data:dimensions>
+
+                                <viz.data:measures>
+
+                                    <viz.data:MeasureDefinition
+                                        name="Orders"
+                                        value="{orders}" />
+
+                                </viz.data:measures>
+
+                            </viz.data:FlattenedDataset>
+
+                        </viz:dataset>
+
+                        <viz:feeds>
+
+                            <viz.feeds:FeedItem
+                                uid="valueAxis"
+                                type="Measure"
+                                values="Orders"/>
+
+                            <viz.feeds:FeedItem
+                                uid="categoryAxis"
+                                type="Dimension"
+                                values="Month"/>
+
+                        </viz:feeds>
+
+                    </viz:VizFrame>
+
+                </Panel>
+
+                <!-- ======================================= -->
+                <!-- REGION SALES                            -->
+                <!-- ======================================= -->
+
+                <Panel headerText="Regional Contribution">
+
+                    <viz:VizFrame
+                        width="100%"
+                        height="450px"
+                        vizType="donut">
+
+                        <viz:dataset>
+
+                            <viz.data:FlattenedDataset
+                                data="{/regions}">
+
+                                <viz.data:dimensions>
+
+                                    <viz.data:DimensionDefinition
+                                        name="Region"
+                                        value="{region}" />
+
+                                </viz.data:dimensions>
+
+                                <viz.data:measures>
+
+                                    <viz.data:MeasureDefinition
+                                        name="Sales"
+                                        value="{sales}" />
+
+                                </viz.data:measures>
+
+                            </viz.data:FlattenedDataset>
+
+                        </viz:dataset>
+
+                        <viz:feeds>
+
+                            <viz.feeds:FeedItem
+                                uid="size"
+                                type="Measure"
+                                values="Sales"/>
+
+                            <viz.feeds:FeedItem
+                                uid="color"
+                                type="Dimension"
+                                values="Region"/>
+
+                        </viz:feeds>
+
+                    </viz:VizFrame>
+
+                </Panel>
+
+                <!-- ======================================= -->
+                <!-- PRODUCT ANALYSIS                        -->
+                <!-- ======================================= -->
+
+                <Panel headerText="Product Category Distribution">
+
+                    <viz:VizFrame
+                        width="100%"
+                        height="450px"
+                        vizType="pie">
+
+                        <viz:dataset>
+
+                            <viz.data:FlattenedDataset
+                                data="{/products}">
+
+                                <viz.data:dimensions>
+
+                                    <viz.data:DimensionDefinition
+                                        name="Category"
+                                        value="{category}" />
+
+                                </viz.data:dimensions>
+
+                                <viz.data:measures>
+
+                                    <viz.data:MeasureDefinition
+                                        name="Sales"
+                                        value="{sales}" />
+
+                                </viz.data:measures>
+
+                            </viz.data:FlattenedDataset>
+
+                        </viz:dataset>
+
+                        <viz:feeds>
+
+                            <viz.feeds:FeedItem
+                                uid="size"
+                                type="Measure"
+                                values="Sales"/>
+
+                            <viz.feeds:FeedItem
+                                uid="color"
+                                type="Dimension"
+                                values="Category"/>
+
+                        </viz:feeds>
+
+                    </viz:VizFrame>
+
+                </Panel>
+
+                <!-- ======================================= -->
+                <!-- TOP CUSTOMERS                           -->
+                <!-- ======================================= -->
+
+                <Panel headerText="Top Customers">
+
+                    <viz:VizFrame
+                        width="100%"
+                        height="450px"
+                        vizType="bar">
+
+                        <viz:dataset>
+
+                            <viz.data:FlattenedDataset
+                                data="{/topCustomers}">
+
+                                <viz.data:dimensions>
+
+                                    <viz.data:DimensionDefinition
+                                        name="Customer"
+                                        value="{name}" />
+
+                                </viz.data:dimensions>
+
+                                <viz.data:measures>
+
+                                    <viz.data:MeasureDefinition
+                                        name="Revenue"
+                                        value="{revenue}" />
+
+                                </viz.data:measures>
+
+                            </viz.data:FlattenedDataset>
+
+                        </viz:dataset>
+
+                        <viz:feeds>
+
+                            <viz.feeds:FeedItem
+                                uid="valueAxis"
+                                type="Measure"
+                                values="Revenue"/>
+
+                            <viz.feeds:FeedItem
+                                uid="categoryAxis"
+                                type="Dimension"
+                                values="Customer"/>
+
+                        </viz:feeds>
+
+                    </viz:VizFrame>
+
+                </Panel>
+
+                <!-- ======================================= -->
+                <!-- SALES DATA TABLE                        -->
+                <!-- ======================================= -->
+
+                <Panel headerText="Monthly Sales Details">
+
+                    <Table items="{/sales}">
+
+                        <columns>
+
+                            <Column>
+                                <Text text="Month"/>
+                            </Column>
+
+                            <Column>
+                                <Text text="Revenue"/>
+                            </Column>
+
+                            <Column>
+                                <Text text="Orders"/>
+                            </Column>
+
+                            <Column>
+                                <Text text="Target"/>
+                            </Column>
+
+                        </columns>
+
+                        <items>
+
+                            <ColumnListItem>
+
+                                <cells>
+
+                                    <Text text="{month}" />
+                                    <Text text="{revenue}" />
+                                    <Text text="{orders}" />
+                                    <Text text="{target}" />
+
+                                </cells>
+
+                            </ColumnListItem>
+
+                        </items>
+
+                    </Table>
+
+                </Panel>
+
+            </VBox>
+
+        </content>
+
+    </Page>
+
+</mvc:View>

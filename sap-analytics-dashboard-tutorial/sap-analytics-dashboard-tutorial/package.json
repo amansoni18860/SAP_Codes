@@ -1,0 +1,14 @@
+{
+  "name": "sap-analytics-dashboard-tutorial",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Learning SAPUI5 analytics dashboard with mock business data, KPI tiles, filters, charts, and tables.",
+  "scripts": {
+    "start": "ui5 serve --open index.html",
+    "serve": "ui5 serve",
+    "build": "ui5 build --clean-dest"
+  },
+  "devDependencies": {
+    "@ui5/cli": "^4.0.0"
+  }
+}

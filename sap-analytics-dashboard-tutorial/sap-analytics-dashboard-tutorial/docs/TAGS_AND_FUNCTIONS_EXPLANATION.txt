@@ -1,0 +1,645 @@
+SAPUI5 TAGS AND FUNCTIONS EXPLANATION
+Project: sap-analytics-dashboard-tutorial
+
+This file explains the SAPUI5 XML tags used in webapp/view/App.view.xml and
+the JavaScript functions used in webapp/controller/App.controller.js.
+
+============================================================
+1. IMPORTANT IDEA: XML VIEW + CONTROLLER
+============================================================
+
+App.view.xml
+  This file creates the screen. It contains SAPUI5 XML tags such as Button,
+  Table, Select, Panel, and VizFrame.
+
+App.controller.js
+  This file contains JavaScript behavior for the screen. It handles events,
+  filters data, calculates KPIs, and prepares chart data.
+
+Component.js
+  This is the application startup file. It creates the JSON models and starts
+  the root view.
+
+============================================================
+2. XML NAMESPACES USED IN APP.VIEW.XML
+============================================================
+
+xmlns:mvc="sap.ui.core.mvc"
+  Gives access to MVC view tags such as <mvc:View>.
+
+xmlns="sap.m"
+  Makes sap.m controls available without a prefix. Examples:
+  <Button>, <Text>, <Table>, <Panel>, <VBox>, <HBox>, <Select>.
+
+xmlns:core="sap.ui.core"
+  Gives access to core helper controls such as <core:Item>.
+
+xmlns:f="sap.f"
+  Gives access to Fiori layout controls such as <f:DynamicPage>.
+
+xmlns:layout="sap.ui.layout"
+  Gives access to layout controls such as <layout:Grid>.
+
+xmlns:viz="sap.viz.ui5.controls"
+  Gives access to chart controls such as <viz:VizFrame>.
+
+xmlns:viz.data="sap.viz.ui5.data"
+  Gives access to chart dataset tags such as <viz.data:FlattenedDataset>.
+
+xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+  Gives access to chart feed tags such as <viz.feeds:FeedItem>.
+
+============================================================
+3. TAGS USED IN APP.VIEW.XML
+============================================================
+
+<mvc:View>
+  Root tag of the XML view.
+  It connects the XML view to the controller using controllerName.
+
+controllerName="sap.analytics.dashboard.tutorial.controller.App"
+  Tells UI5 which controller file should handle this view.
+  This points to webapp/controller/App.controller.js.
+
+displayBlock="true"
+  Makes the root view behave like a block element and use available page space.
+
+<f:DynamicPage>
+  Fiori page layout with title area, header area, and content area.
+  Used as the main dashboard page container.
+
+id="page"
+  A control id. Useful if you need to find or reference the control later.
+
+fitContent="true"
+  Allows the content area to fit closely to its content.
+
+class="dashboardPage"
+  Adds a CSS class from webapp/css/style.css.
+
+<f:title>
+  The title area of the DynamicPage.
+
+<f:DynamicPageTitle>
+  A special title bar for DynamicPage.
+  It can contain heading text, expanded content, and action buttons.
+
+<f:heading>
+  Holds the main heading control.
+
+<Title>
+  Displays title text.
+  In this app it shows "Analytics Workspace".
+
+level="H1"
+  Sets title importance, similar to HTML heading levels.
+
+<f:expandedContent>
+  Extra title text shown when the DynamicPage header is expanded.
+
+<Text>
+  Displays normal text.
+  Used in headings, table columns, and table cells.
+
+<f:actions>
+  Area for title bar actions such as buttons.
+
+<Button>
+  Clickable button.
+  In this app the Reset button calls onResetFilters in the controller.
+
+text="Reset"
+  Text shown on the button.
+
+icon="sap-icon://reset"
+  Uses a built-in SAP icon.
+
+press=".onResetFilters"
+  Event binding. When the button is pressed, UI5 calls the user-defined
+  function onResetFilters in App.controller.js.
+
+<f:header>
+  Header area below the title.
+  This app uses it for filters.
+
+<f:DynamicPageHeader>
+  Header container used inside DynamicPage.
+
+pinnable="true"
+  Allows the header to be pinned open by the user.
+
+<HBox>
+  Horizontal layout box.
+  Child controls are placed left to right.
+
+wrap="Wrap"
+  Allows items inside the HBox to move to the next line on smaller screens.
+
+<VBox>
+  Vertical layout box.
+  Child controls are placed top to bottom.
+  In this app each filter uses VBox: Label on top, Select below.
+
+<Label>
+  Field label. It explains what a form field means.
+
+labelFor="yearFilter"
+  Connects the label to a control id.
+  This improves accessibility.
+
+<Select>
+  Dropdown control.
+  Used for Year, Region, and Category filters.
+
+selectedKey="{view>/selectedYear}"
+  Data binding to the named "view" model.
+  It stores which year is currently selected.
+
+selectedKey="{view>/selectedRegion}"
+  Stores selected region in the "view" model.
+
+selectedKey="{view>/selectedCategory}"
+  Stores selected product/category in the "view" model.
+
+change=".onFilterChange"
+  Event binding. When the dropdown value changes, UI5 calls onFilterChange
+  in App.controller.js.
+
+items="{/years}"
+  Aggregation binding. It repeats dropdown items from the /years array in
+  mockData.json.
+
+items="{/regions}"
+  Repeats dropdown items from the /regions array.
+
+items="{/categories}"
+  Repeats dropdown items from the /categories array.
+
+<core:Item>
+  Dropdown item used inside Select.
+
+key="{key}"
+  The internal value of the item.
+
+text="{text}"
+  The visible label of the item.
+
+<f:content>
+  Main content area of the DynamicPage.
+
+<layout:Grid>
+  Responsive grid layout.
+  It arranges controls in columns depending on screen size.
+
+defaultSpan="XL2 L2 M4 S12"
+  Controls how wide each grid item is on different screen sizes.
+  SAPUI5 grid is based on 12 columns:
+  XL2 means 2 columns on extra large screens.
+  L2 means 2 columns on large screens.
+  M4 means 4 columns on medium screens.
+  S12 means full width on small screens.
+
+defaultSpan="XL8 L8 M12 S12"
+  Used for larger charts. Charts take 8 columns on large screens and full
+  width on medium/small screens.
+
+defaultSpan="XL6 L6 M12 S12"
+  Used for two half-width charts on large screens and full-width charts on
+  smaller screens.
+
+hSpacing="1"
+  Horizontal spacing between grid items.
+
+vSpacing="1"
+  Vertical spacing between grid items.
+
+containerQuery="true"
+  Makes grid responsiveness based on container size.
+
+content="{/dashboard/kpis}"
+  Aggregation binding. Repeats KPI tiles from /dashboard/kpis.
+
+<GenericTile>
+  Fiori tile control.
+  Used to display KPI cards such as Revenue, Margin, Orders, Pipeline.
+
+header="{title}"
+  The tile header is bound to the title property of each KPI object.
+
+frameType="OneByOne"
+  Tile size format.
+
+<TileContent>
+  Content area inside a GenericTile.
+
+<NumericContent>
+  Displays a large number, icon, and semantic color.
+
+value="{value}"
+  KPI number displayed in the tile.
+
+icon="{icon}"
+  SAP icon displayed in the tile.
+
+valueColor="{state}"
+  Semantic color of the value, such as Good, Critical, or Neutral.
+
+<Panel>
+  Container with a title/header.
+  Used to group each chart and table section.
+
+headerText="Monthly Revenue and Orders"
+  Text shown in the panel header.
+
+<viz:VizFrame>
+  SAPUI5 chart control.
+  This is the main chart tag.
+
+id="monthlyRevenueChart"
+  Control id for the monthly revenue chart.
+
+id="pipelineChart"
+  Control id for the pipeline chart.
+
+id="regionRevenueChart"
+  Control id for the region revenue chart.
+
+id="categoryRevenueChart"
+  Control id for the category revenue chart.
+
+height="22rem" or height="20rem"
+  Chart height.
+
+width="100%"
+  Chart fills available panel width.
+
+vizType="dual_combination"
+  Chart type with two value axes, useful for revenue and order count together.
+
+vizType="bar"
+  Horizontal bar chart.
+
+vizType="donut"
+  Donut/pie style chart.
+
+vizType="column"
+  Vertical column chart.
+
+uiConfig="{applicationSet:'fiori'}"
+  Tells VizFrame to use Fiori-style chart behavior.
+
+<viz:dataset>
+  Area where chart data source is defined.
+
+<viz.data:FlattenedDataset>
+  Dataset type used by VizFrame.
+  It reads an array from the JSON model and exposes dimensions and measures.
+
+data="{/dashboard/monthlyRevenue}"
+  Data array for the monthly chart.
+
+data="{/dashboard/pipelineByStage}"
+  Data array for the pipeline chart.
+
+data="{/dashboard/revenueByRegion}"
+  Data array for the region donut chart.
+
+data="{/dashboard/revenueByCategory}"
+  Data array for the category chart.
+
+<viz.data:dimensions>
+  Holds chart dimensions.
+  A dimension is a category/group, such as Month, Stage, Region, or Category.
+
+<viz.data:DimensionDefinition>
+  Defines one chart dimension.
+
+name="Month" value="{month}"
+  Uses the month property as the Month dimension.
+
+name="Stage" value="{stage}"
+  Uses the stage property as the Stage dimension.
+
+name="Region" value="{region}"
+  Uses the region property as the Region dimension.
+
+name="Category" value="{category}"
+  Uses the category property as the Category dimension.
+
+<viz.data:measures>
+  Holds chart measures.
+  A measure is a numeric value, such as Revenue, Orders, Value, or Deals.
+
+<viz.data:MeasureDefinition>
+  Defines one chart numeric measure.
+
+name="Revenue" value="{revenue}"
+  Uses the revenue property as a chart measure.
+
+name="Orders" value="{orders}"
+  Uses the orders property as a chart measure.
+
+name="Value" value="{value}"
+  Uses the value property as a chart measure.
+
+name="Deals" value="{count}"
+  Uses the count property as a chart measure.
+
+<viz:feeds>
+  Connects dimensions and measures to chart roles.
+  Example: which data goes to the axis, color, or size.
+
+<viz.feeds:FeedItem>
+  One chart feed mapping.
+
+uid="valueAxis"
+  Maps a measure to the main numeric axis.
+
+uid="valueAxis2"
+  Maps a measure to the second numeric axis.
+
+uid="categoryAxis"
+  Maps a dimension to the category axis.
+
+uid="size"
+  Used by donut charts to decide segment size.
+
+uid="color"
+  Used by donut charts to decide segment color/group.
+
+type="Measure"
+  The feed expects numeric data.
+
+type="Dimension"
+  The feed expects category/group data.
+
+values="Revenue", values="Orders", values="Month", etc.
+  Refers to the dimension or measure names defined in the dataset.
+
+<Table>
+  Responsive SAPUI5 table.
+  Used to display top opportunities.
+
+items="{/dashboard/topOpportunities}"
+  Repeats one row for each opportunity object.
+
+growing="true"
+  Allows the table to handle more rows gradually.
+
+sticky="ColumnHeaders"
+  Keeps the column headers visible while scrolling.
+
+<columns>
+  Defines table columns.
+
+<Column>
+  One table column.
+
+minScreenWidth="Tablet"
+  This column appears normally starting from tablet width.
+
+minScreenWidth="Desktop"
+  This column appears normally starting from desktop width.
+
+demandPopin="true"
+  On smaller screens, this column moves into a pop-in area instead of
+  disappearing completely.
+
+hAlign="End"
+  Aligns column content to the right. Used for numbers.
+
+<items>
+  Row template area of the table.
+
+<ColumnListItem>
+  Row template for a sap.m.Table.
+
+<cells>
+  Cells inside one table row. They match the columns in order.
+
+<ObjectIdentifier>
+  Business object display control. Used for account names.
+
+title="{account}"
+  Displays the account name.
+
+<ObjectStatus>
+  Displays status text with semantic color.
+
+text="{stage}"
+  Shows opportunity stage.
+
+state="{= ${probability} >= 0.7 ? 'Success' : ${probability} >= 0.55 ? 'Warning' : 'Error' }"
+  Expression binding. It calculates color from probability:
+  70% or more = Success
+  55% to 69% = Warning
+  less than 55% = Error
+
+<ObjectNumber>
+  Displays a number with a unit.
+
+number="{value}" unit="USD"
+  Shows opportunity value in USD.
+
+number="{= Math.round(${probability} * 100) }" unit="%"
+  Converts probability from decimal to percent.
+
+============================================================
+4. DATA BINDING EXPLANATION
+============================================================
+
+{title}
+  Relative binding. Reads title from the current object.
+
+{/dashboard/kpis}
+  Absolute binding from the default model.
+
+{view>/selectedYear}
+  Absolute binding from the named "view" model.
+
+{= ... }
+  Expression binding. Runs a small calculation directly in XML.
+
+.onResetFilters
+  Calls a function from the controller connected to this XML view.
+
+.onFilterChange
+  Calls a function from the controller connected to this XML view.
+
+============================================================
+5. BUILT-IN SAPUI5 FUNCTIONS / METHODS USED
+============================================================
+
+sap.ui.define([...], function (...) { ... })
+  SAPUI5 module definition function.
+  It loads dependencies and passes them into the callback.
+
+Controller.extend("name", { ... })
+  Creates a controller class.
+  The name should match controllerName in App.view.xml.
+
+this.getOwnerComponent()
+  Built-in controller method.
+  Returns the Component.js instance that owns this view.
+
+getModel()
+  Built-in UI5 method.
+  Gets a model from a component or view.
+  getModel() returns the default model.
+  getModel("view") returns the named view model.
+
+getProperty("/path")
+  Built-in JSONModel method.
+  Reads a value from the model.
+
+setProperty("/path", value)
+  Built-in JSONModel method.
+  Writes a value into the model.
+  When model data changes, UI bindings update automatically.
+
+attachRequestCompleted(function)
+  Built-in JSONModel event method.
+  Runs the function when model data finishes loading.
+
+MessageToast.show("text")
+  Built-in SAPUI5 function from sap/m/MessageToast.
+  Shows a small temporary message to the user.
+
+============================================================
+6. BUILT-IN JAVASCRIPT FUNCTIONS USED
+============================================================
+
+Array.filter(function)
+  Creates a new array containing only items that match the condition.
+  Used to filter sales and opportunities.
+
+Array.sort(function)
+  Sorts an array.
+  Used to sort opportunities by value and months by month order.
+
+Array.reduce(function, initialValue)
+  Combines array values into one result.
+  Used to calculate totals and average margin.
+
+Array.forEach(function)
+  Loops over each item in an array.
+  Used while grouping revenue by month, region, and category.
+
+Object.keys(object)
+  Returns all keys of an object as an array.
+  Used to convert grouped objects back into arrays for charts.
+
+Number(value)
+  Converts a value into a number.
+
+String(value)
+  Converts a value into text.
+
+Math.round(value)
+  Rounds a number to the nearest integer.
+
+toFixed(1)
+  Formats a number with one decimal digit.
+
+============================================================
+7. USER-DEFINED FUNCTIONS IN APP.CONTROLLER.JS
+============================================================
+
+onInit()
+  Called automatically by SAPUI5 when App.view.xml is created.
+  It gets the dashboard model and waits for mockData.json to load.
+  After data loads, it calls _refreshDashboard().
+
+onFilterChange()
+  Called when Year, Region, or Category dropdown changes.
+  It refreshes the dashboard using the selected filter values.
+
+onResetFilters()
+  Called when the Reset button is clicked.
+  It sets filters back to:
+    selectedYear = 2026
+    selectedRegion = All
+    selectedCategory = All
+  Then it refreshes the dashboard and shows a MessageToast.
+
+_refreshDashboard()
+  Main dashboard calculation function.
+  It reads filtered data, prepares KPI data, prepares chart data, and writes
+  everything under /dashboard/... paths in the JSON model.
+
+_getFilteredSales()
+  Reads all sales records and returns only the records matching:
+    selected year
+    selected region
+    selected category
+  Used by KPI tiles and revenue charts.
+
+_getFilteredOpportunities()
+  Reads all opportunities and returns only the records matching:
+    selected region
+    selected category
+  Then it sorts them by highest value first.
+
+_buildKpis(aSales, aPipeline, aOpportunities)
+  Creates the KPI tile data.
+  It calculates:
+    total revenue
+    average gross margin
+    total orders
+    total pipeline value
+    number of risky opportunities
+
+_groupMonthlyRevenue(aSales)
+  Groups filtered sales data by month.
+  Output is used by the Monthly Revenue and Orders chart.
+
+_groupByDimension(aSales, sProperty, sLabelName)
+  Generic grouping function.
+  It groups sales by region or category.
+  Used for:
+    Revenue by Region chart
+    Revenue by Category chart
+
+_sum(aItems, sProperty)
+  Adds numeric values from an array.
+  Example:
+    _sum(aSales, "revenue") adds all revenue values.
+    _sum(aSales, "orders") adds all order counts.
+
+_getDashboardModel()
+  Returns the default JSON model created in Component.js.
+  This model contains mockData.json and /dashboard/... calculated data.
+
+_getViewModel()
+  Returns the named "view" model created in Component.js.
+  This model contains selected filter values.
+
+_formatCurrency(iValue)
+  Converts large numbers into short currency labels.
+  Examples:
+    420000 becomes $420K
+    1200000 becomes $1.2M
+
+============================================================
+8. DATA FLOW OF THIS DASHBOARD
+============================================================
+
+1. Browser opens index.html.
+2. index.html loads SAPUI5.
+3. SAPUI5 starts Component.js.
+4. Component.js creates JSON models.
+5. Component.js loads mockData.json.
+6. UI5 creates App.view.xml.
+7. App.controller.js runs onInit().
+8. When data loads, _refreshDashboard() calculates KPI and chart data.
+9. XML bindings in App.view.xml display that data automatically.
+10. When a user changes filters, onFilterChange() recalculates the dashboard.
+
+============================================================
+9. SIMPLE RULE TO REMEMBER
+============================================================
+
+XML view = what the user sees.
+Controller = what happens when the user interacts.
+Model = where data is stored.
+Binding = connection between model data and UI controls.

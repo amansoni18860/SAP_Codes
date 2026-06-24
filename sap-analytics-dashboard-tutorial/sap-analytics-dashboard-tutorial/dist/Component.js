@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ui/core/UIComponent","sap/ui/model/json/JSONModel"],function(e,t){"use strict";return e.extend("sap.analytics.dashboard.tutorial.Component",{metadata:{manifest:"json"},init:function(){var a=new t;var o=new t({selectedYear:"2026",selectedRegion:"All",selectedCategory:"All"});this.setModel(a);this.setModel(o,"view");e.prototype.init.apply(this,arguments);a.loadData(sap.ui.require.toUrl("sap/analytics/dashboard/tutorial/model/mockData.json"))}})});
+//# sourceMappingURL=Component.js.map

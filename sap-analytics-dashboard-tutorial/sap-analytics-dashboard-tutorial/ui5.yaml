@@ -1,0 +1,34 @@
+# ui5.yaml configures the SAPUI5 tooling used by npm scripts.
+# The UI5 CLI reads this file when you run npm start or npm run build.
+specVersion: "3.0"
+
+metadata:
+  # Technical project name. It should match the app namespace style.
+  name: sap.analytics.dashboard.tutorial
+
+# This project is a UI5 browser application, not a library.
+type: application
+
+framework:
+  # Use SAPUI5 instead of OpenUI5 because this project uses SAP libraries.
+  name: SAPUI5
+  # Framework version loaded by the UI5 tooling.
+  version: "1.120.0"
+  # Libraries used by the XML view and controller.
+  libraries:
+    # sap.m contains common controls: Button, Table, Panel, Select, Text, VBox.
+    - name: sap.m
+    # sap.f contains Fiori layout controls such as DynamicPage.
+    - name: sap.f
+    # sap.ui.core contains base classes and helper controls.
+    - name: sap.ui.core
+    # sap.ui.layout contains Grid and other layout helpers.
+    - name: sap.ui.layout
+    # sap.viz contains chart controls such as VizFrame.
+    - name: sap.viz
+    # Extra suite controls for business-style UI patterns.
+    - name: sap.suite.ui.commons
+
+server:
+  # No custom middleware is needed for this beginner tutorial.
+  customMiddleware: []
