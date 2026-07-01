@@ -1,0 +1,26 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <Panel
+        width="400px"
+        headerText="Revenue Dashboard">
+
+        <content>
+
+            <VBox class="sapUiSmallMargin">
+
+                <Title
+                    text="{$this>title}" />
+
+                <ObjectNumber
+                    number="{$this>revenue}"
+                    unit="$" />
+
+            </VBox>
+
+        </content>
+
+    </Panel>
+
+</core:FragmentDefinition>

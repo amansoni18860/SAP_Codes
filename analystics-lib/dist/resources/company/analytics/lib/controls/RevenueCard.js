@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ui/core/XMLComposite"],function(e){"use strict";return e.extend("company.analytics.lib.controls.RevenueCard",{metadata:{properties:{title:{type:"string",defaultValue:""},revenue:{type:"float",defaultValue:0}}}})});
+//# sourceMappingURL=RevenueCard.js.map

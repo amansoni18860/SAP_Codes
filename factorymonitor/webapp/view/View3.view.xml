@@ -1,0 +1,21 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:lib="company.analytics.lib.controls">
+
+    <Page title="Standalone Library Component">
+
+        <content>
+
+           <lib:RevenueCard
+                id="revenueCard"
+                title="Revenue Card"
+                revenue="1000000"
+                growth="10"
+                currency="USD" />
+
+        </content>
+
+    </Page>
+
+</mvc:View>

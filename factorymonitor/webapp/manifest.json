@@ -41,10 +41,12 @@
         "sap.ui.core": {}
       }
     },
-    
+ 
 "resourceRoots": {
-      "factory.lib": "factory/lib"
-    }
+    "factory.lib": "factory/lib",
+
+    "company.analytics.lib": "../analytics-lib/dist/resources/company/analytics/lib"
+}
 ,
     "contentDensities": {
       "compact": true,
@@ -90,9 +92,8 @@
         "TargetView1": {
           "id": "View1",
           "name": "View1"
-        }
       }
-    },
+    }},
     "rootView": {
       "viewName": "com.training.factory.factorymonitor.view.App",
       "type": "XML",

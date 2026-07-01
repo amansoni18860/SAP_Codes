@@ -1,35 +1,5 @@
-<mvc:View
-    controllerName="com.training.factory.factorymonitor.controller.View2"
-    xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m"
-    xmlns:lib="factory.lib.controls">
-
-    <Page title="Bonus Calculator">
-
-        <content>
-
-            <VBox class="sapUiMediumMargin">
-
-                <Input
-                    id="empName"
-                    placeholder="Employee Name"/>
-
-                <Input
-                    id="salary"
-                    type="Number"
-                    placeholder="Salary"/>
-
-                <Button
-                    text="Calculate Bonus"
-                    press=".onCalculate"/>
-
-                <lib:EmployeeCard
-                    id="empCard"/>
-
-            </VBox>
-
-        </content>
-
-    </Page>
-
-</mvc:View>
+"resourceRoots": {
+      "factory.lib": "factory/lib",
+       "company.analytics.lib": "../analytics-lib/dist/company/analytics/lib"
+    }
+,

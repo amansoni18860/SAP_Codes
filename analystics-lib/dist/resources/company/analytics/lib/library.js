@@ -1,0 +1,2 @@
+sap.ui.define([],function(){"use strict";sap.ui.getCore().initLibrary({name:"company.analytics.lib",version:"1.0.0",dependencies:["sap.ui.core","sap.m"],controls:["company.analytics.lib.controls.RevenueCard"],noLibraryCSS:true});return company.analytics.lib});
+//# sourceMappingURL=library.js.map

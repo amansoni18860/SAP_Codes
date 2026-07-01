@@ -1,0 +1,19 @@
+{
+
+  "name": "company.analytics.lib",
+  "version": "1.0.0",
+  "main": "index.js",
+ 
+ "scripts": {
+    "build": "ui5 build --all",
+    "serve": "ui5 serve"
+  },
+
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@ui5/cli": "^4.0.57"
+  }
+}

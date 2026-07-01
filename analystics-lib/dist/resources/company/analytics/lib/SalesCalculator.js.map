@@ -1,0 +1,1 @@
+{"version":3,"file":"SalesCalculator.js","names":["sap","ui","define","calculateRevenue","quantity","price","calculateProfit","revenue","cost"],"sources":["SalesCalculator-dbg.js"],"mappings":"AAAAA,IAAIC,GAAGC,OAAO,GAAI,WAEd,aAEA,MAAO,CAEHC,iBAAkB,SAAUC,EAAUC,GAClC,OAAOD,EAAWC,CACtB,EAEAC,gBAAiB,SACbC,EACAC,GAEA,OAAOD,EAAUC,CACrB,EAIR","ignoreList":[]}
